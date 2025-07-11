@@ -12,7 +12,7 @@ function App() {
     <>
         <main className="mt-5 flex-grow-1">
             <Router>
-                 <div class="d-flex flex-column min-vh-100 ">
+                 <div className="d-flex flex-column min-vh-100 ">
                     <NavigationBar />
                     <Routes>
                         <Route path="/" element={<HomePage />} />

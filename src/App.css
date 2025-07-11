@@ -1,10 +1,38 @@
 #root {
   width: 100%;
-  margin: 0 auto;
+  margin: 1rem auto 0 auto;
   padding: 3rem;
   text-align: center;
 }
+.accordion-button:not(.collapsed) {
+  color: inherit;
+  background-color: transparent;
+  box-shadow: none;
+}
+.accordion-button:focus {
+  box-shadow: none;
+  outline: none;
+}
+.accordion-collapse,
+.accordion-collapse.collapsing {
+  transition: none !important;
+}
+.list-group-item.active {
+    background-color: #198754 !important;
+    color: #fff !important;
+ }
 
+input::placeholder {
+  font-weight: 520;
+}
+.btn.dropdown-toggle:hover,
+.btn.dropdown-toggle:focus,
+.btn.dropdown-toggle:active {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: inherit !important;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
