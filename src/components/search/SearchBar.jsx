@@ -10,9 +10,9 @@ const SearchBar = () => {
   return (
     <>
       {isSearchBarOpen ? (
-        <SearchBarAccordion
-           callBack={() => setIsSearchBarOpen(false)}
-        />
+            <SearchBarAccordion
+               callBack={() => setIsSearchBarOpen(false)}
+            />
       ) : (
         <SearchBarDefault
          callBack={() => setIsSearchBarOpen(true)}

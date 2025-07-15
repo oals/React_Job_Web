@@ -2,6 +2,8 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import NotiInfoPage from './pages/noti/NotiInfoPage';
+import SearchPage from './pages/search/SearchPage';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 import './App.css'
@@ -16,6 +18,8 @@ function App() {
                     <NavigationBar />
                     <Routes>
                         <Route path="/" element={<HomePage />} />
+                        <Route path="/noti" element={<NotiInfoPage />} />
+                        <Route path="/search" element={<SearchPage />} />
                     </Routes>
                 </div>
            </Router>

@@ -23,7 +23,7 @@
  }
 
 input::placeholder {
-  font-weight: 520;
+  font-weight: 450;
 }
 .btn.dropdown-toggle:hover,
 .btn.dropdown-toggle:focus,
@@ -33,6 +33,21 @@ input::placeholder {
   outline: none !important;
   color: inherit !important;
 }
+
+.table tbody tr td {
+  border-bottom: none !important;
+}
+table tr td {
+  font-size: 0.85rem;
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3csvg fill='grey' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath d='M4.5 1.5l6 6-6 6' stroke='grey' stroke-width='2' fill='none'/%3e%3c/svg%3e");
+}
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3csvg fill='grey' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath d='M11.5 1.5l-6 6 6 6' stroke='grey' stroke-width='2' fill='none'/%3e%3c/svg%3e");
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

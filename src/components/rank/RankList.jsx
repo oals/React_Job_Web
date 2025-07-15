@@ -4,7 +4,7 @@ const RankList = ({platformTitle,notiTitle,notiCompany}) => {
 
     return (
 
-    <div className="mx-auto w-25">
+    <div className=" w-25 mx-5 px-5">
       <div className="dropdown w-100">
         <button
           className="btn btn-light w-100 dropdown-toggle fw-bold text-start px-3 py-2"

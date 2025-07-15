@@ -36,7 +36,7 @@ const HomePage = () => {
   return (
     <div className="w-75 mx-auto flex-column">
 
-        <div className="d-flex justify-content-start">
+        <div className="d-flex justify-content-start w-100">
             <SearchBar />
             <RankList />
         </div>
