@@ -2,246 +2,144 @@
 import React from 'react';
 import { useState } from 'react';
 import SearchBar from '../components/search/SearchBar';
-import NewsCard from '../components/news/NewsCard';
-import ToolBadge from '../components/badge/ToolBadge';
-import NotiCard from '../components/noti/NotiCard';
-import RankList from '../components/rank/RankList';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
 
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
-  const [selectPlatformId, setSelectPlatformId] = useState(0)
-  const [selectNotiListBadge, setSelectNotiListBadge] = useState(0)
 
-  const platforms = [
-     { id: 1, name: '사람인' },
-     { id: 2, name: '잡코리아' },
-     { id: 3, name: '인크루트' },
-     { id: 4, name: '원티드' },
-     { id: 5, name: '로켓펀치' },
-     { id: 6, name: '리멤버' },
-   ];
-
-  function chunkArray(array, size) {
-    const chunks = [];
-    for (let i = 0; i < array.length; i += size) {
-      chunks.push(array.slice(i, i + size));
-    }
-    return chunks;
-  }
-
-
-  const platformChunks = chunkArray(platforms, 2); // 2개씩 나누기
 
   return (
     <div className="w-75 mx-auto flex-column">
 
-        <div className="d-flex justify-content-start w-100">
+
+          <div className="d-flex justify-content-center align-items-center flex-column w-100 mt-5 p-3">
+                      {/* 버튼 영역 */}
+        {/*               <div className="mx-5"> */}
+        {/*                 <button type="button" className="btn btn-light btn-sm mx-2 p-3 rounded-pill fw-semibold fs-6 border border-1 shadow-sm"> */}
+        {/*                   <span className="text-success"><i className="bi bi-stars me-1"></i> 회원님을 위한 추천공고 </span> */}
+        {/*                 </button> */}
+        {/*                 <button type="button" className="btn btn-light btn-sm mx-2 p-3 rounded-pill fw-semibold fs-6 border border-1 shadow-sm"> */}
+        {/*                   <span className="text-secondary"><i className="bi bi-fire me-1"></i> 지금 핫한 대기업 공고</span> */}
+        {/*                 </button> */}
+        {/*                 <button type="button" className="btn btn-light btn-sm mx-2 p-3 rounded-pill fw-semibold fs-6 border border-1 shadow-sm"> */}
+        {/*                   <span className="text-secondary"><i className="bi bi-bank me-1"></i> 공기업 공고 </span> */}
+        {/*                 </button> */}
+        {/*               </div> */}
+
+            <h1 className="fw-bold">나에게 꼭 맞는 커리어를 찾아보세요.</h1>
+            <span className="mb-4" style={{fontSize: '1.2rem'}}>키워드, 분야, 또는 나만의 성향으로 직업을 검색할 수 있어요.</span>
+
             <SearchBar />
-            <RankList />
+
+
+            <div className="d-flex justify-content-start align-items-start flex-column w-100 mt-3">
+
+                 <span className="fw-bold text-dark mb-4" style={{fontSize: '1.8rem'}}>추천 직업</span>
+                <section className=" my-1">
+                      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                        {/* Card 1 */}
+                        <div className="col">
+                          <div className="card h-100 shadow-sm">
+                            <div className="d-flex flex-column flex-md-row align-items-center p-3">
+                              <img
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVPe_r8Kt6jPJ7Sm9YoYqL3GBBlbBoDFJuj5ecni_29E3jDCGIvezQHs6sjCWfPV8EJTaeiLA0pNxr7pYz_GSrl3ZAQjYk5AflQBZuRYP0dflKITc3sOus9cbzGxoR0Fkn97Wbv2rTRldZS4ZMeGSUQt6wrSo237MMaVjm9EWcjYbSqvWQTdbJkszABlI5CPetNFkokBRkRQyXhaq0MVoWbSg1h86D1fdtUOkEAVe3icCL7szJ3aO1MpDp2wXhoT7HxLzBtXeK8-Y"
+                                alt="Software Engineer"
+                                className="rounded mb-3 mb-md-0"
+                                style={{ width: '144px', height: '144px', objectFit: 'cover' }}
+                              />
+                              <div className="text-center text-md-start ms-md-3">
+                                <span className="badge bg-primary mb-2">Software</span>
+                              <h5 className="card-title">asfasfasfasfasf asfasfasfasfasf</h5>
+                               <p className="card-text text-muted">
+                                 asfasfasfasfasf asfasfasfasfasf asfasfasfasfasf asfasfasfasfasf.
+                               </p>
+                                <button className="btn btn-primary btn-sm">
+                                  View Details
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Card 2 */}
+                        <div className="col">
+                          <div className="card h-100 shadow-sm">
+                            <div className="d-flex flex-column flex-md-row align-items-center p-3">
+                              <img
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD42s7ezjtz8uQZ1zod6Zj2Ki3uPqiiDTE8pLUGowa3pBrgTJcTG-Rt_WyfleFQtb3lEF7P27Ii7pMunD8nGpRwjC6Lktdz-j7RKWJLTfn2Yruz8yLyATaYkt6QEc3gzvOEnmrvjzKn0Ey9Jf4qUQxRwZKqSi3mIbIv91m6g-S-56PsSgwPy9rrl9xKZHHLQZLSwkCsyXSSPksixcIuDIznQ3X7bnLrWqYkcPwAEzPaFa3T3fRLYnQm9MPzN01mkc3Z_MaiNBvg9tc"
+                                alt="Registered Nurse"
+                                className="rounded mb-3 mb-md-0"
+                                style={{ width: '144px', height: '144px', objectFit: 'cover' }}
+                              />
+                              <div className="text-center text-md-start ms-md-3">
+                                <span className="badge bg-info mb-2">Healthcare</span>
+                                <h5 className="card-title">asfasfasfasfasf asfasfasfasfasf</h5>
+                                <p className="card-text text-muted">
+                                  asfasfasfasfasf asfasfasfasfasf asfasfasfasfasf asfasfasfasfasf.
+                                </p>
+                                <button className="btn btn-info btn-sm text-white">
+                                  View Details
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Card 3 */}
+                        <div className="col">
+                          <div className="card h-100 shadow-sm">
+                            <div className="d-flex flex-column flex-md-row align-items-center p-3">
+                              <img
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBppCNGxayWe02IfWZjfDRzzlwtD05zqvbTKG5bjgjhhx21QmScrVOOgvzskAbERFmhHyqLVuJPlgohiXhaQDdQLknvHclN4h0W9HQ-MRqRZbMY_BL-YWnEvhLX_yZg-mGVHf07Okxf6pabfLZCs_hxkzW6dxtYfsH_zuiTknslYhqnjzSxFQOPDeqZI36hF9hby9bkhMYA9hNs79GPzKgNrTju6MbWeHWBWg48UgY-rY-VQb8MnHuJJVpBlbZO9SQ5CIBeSv7RfWE"
+                                alt="Financial Analyst"
+                                className="rounded mb-3 mb-md-0"
+                                style={{ width: '144px', height: '144px', objectFit: 'cover' }}
+                              />
+                              <div className="text-center text-md-start ms-md-3">
+                                <span className="badge bg-success mb-2">Finance</span>
+                                <h5 className="card-title">asfasfasfasfasf asfasfasfasfasf</h5>
+                                <p className="card-text text-muted">
+                                  asfasfasfasfasf asfasfasfasfasf asfasfasfasfasf asfasfasfasfasf.
+                                </p>
+                                <button className="btn btn-success btn-sm">
+                                  View Details
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+
+
+                    <section className="w-100 mt-5">
+                      <div className="bg-primary text-white rounded p-5 text-center">
+                        <h3 className="display-6 fw-bold">직업 검사</h3>
+                        <p className="lead mx-auto" style={{ maxWidth: '600px' }}>
+                          어디서부터 시작해야 할지 막막하신가요? 종합 퀴즈가 여러분의 성격, 관심사, <br/> 그리고 역량을 분석해 최적의 커리어 경로를 추천해 드립니다.
+                        </p>
+
+                        <Link to="/JobRecommendationTestPage">
+                          <button className="btn btn-light btn-lg">
+                            시작하기
+                          </button>
+                        </Link>
+                      </div>
+                    </section>
+
+
+
+
+
+            </div>
+
         </div>
 
 
-{/*         <div className="d-flex justify-content-end align-items-start"> */}
-{/*           <div className="w-25 mt-5 me-4 d-flex flex-column "> */}
-{/*              */}{/* 전체 버튼 */}
-{/*             <ul className="list-group list-group-horizontal w-100 mb-2"> */}
-{/*               <li */}
-{/*                 className={`list-group-item flex-fill fw-semibold fs-6 text-dark ${selectPlatformId === 0 ? 'active' : ''}`} */}
-{/*                 onClick={() => setSelectPlatformId(0)} */}
-{/*                 role="button" */}
-{/*               > */}
-{/*                 전체 */}
-{/*               </li> */}
-{/*             </ul> */}
-
-{/*              */}{/* 플랫폼 리스트 묶음 */}
-{/*             {platformChunks.map((chunk, idx) => ( */}
-{/*               <ul */}
-{/*                 key={idx} */}
-{/*                 className="d-flex justify-content-between list-group list-group-horizontal-sm mb-1" */}
-{/*               > */}
-{/*                 {chunk.map(platform => ( */}
-{/*                   <li */}
-{/*                     key={platform.id} */}
-{/*                     className={`list-group-item flex-fill text-center w-50 fw-semibold fs-6 text-dark ${ */}
-{/*                       selectPlatformId === platform.id ? 'active fw-bold' : '' */}
-{/*                     }`} */}
-{/*                     onClick={() => setSelectPlatformId(platform.id)} */}
-{/*                     role="button" */}
-{/*                   > */}
-{/*                     {platform.name} */}
-{/*                   </li> */}
-{/*                 ))} */}
-{/*               </ul> */}
-{/*             ))} */}
-{/*             <div> */}
-{/*                  <div className="border border-1 mt-2" style={{backgroundColor: "#e0ffed"}}> */}
-{/*                    <div className="d-flex justify-content-center align-items-center"> */}
-{/*                     <span className="border rounded-pill bg-light p-2 mx-2 fw-bold d-flex flex-column align-items-center" style={{ fontSize: '0.725rem', width: '100px' }}> */}
-{/*                       <i className="bi bi-journal-text mb-1 text-success" style={{ fontSize: '1.2rem' }}></i> */}
-{/*                       <span>Ai 자소서 코칭</span> */}
-{/*                     </span> */}
-{/*                     <span className="border rounded-pill bg-light p-2 mx-2 fw-bold d-flex flex-column align-items-center" style={{ fontSize: '0.725rem', width: '100px' }}> */}
-{/*                       <i className="bi bi-spellcheck me-1 text-success" style={{ fontSize: '1.2rem' }}></i> */}
-{/*                       <span>맞춤법 검사</span> */}
-{/*                     </span> */}
-
-{/*                    <span className="border rounded-pill bg-light p-2 mx-2 fw-bold d-flex flex-column align-items-center" style={{ fontSize: '0.725rem', width: '100px' }}> */}
-{/*                      <i className="bi bi-spellcheck me-1 text-success" style={{ fontSize: '1.2rem' }}></i> */}
-{/*                      <span>글자수 세기</span> */}
-{/*                    </span> */}
-{/*                    </div> */}
-
-{/*                  </div> */}
-
-{/*                   <div className="border border-1 " style={{backgroundColor: "#e0ffed"}}> */}
-{/*                     <div className="d-flex justify-content-center align-items-center"> */}
-{/*                      <span className="border rounded-pill bg-light p-2 mx-2 fw-bold d-flex flex-column align-items-center" style={{ fontSize: '0.725rem', width: '100px' }}> */}
-{/*                        <i className="bi bi-journal-text mb-1 text-success" style={{ fontSize: '1.2rem' }}></i> */}
-{/*                        <span className="fw-semibold" >실업급여 계산</span> */}
-{/*                      </span> */}
-{/*                      <span className="border rounded-pill bg-light p-2 mx-2 fw-bold d-flex flex-column align-items-center" style={{ fontSize: '0.725rem', width: '100px' }}> */}
-{/*                        <i className="bi bi-spellcheck me-1 text-success" style={{ fontSize: '1.2rem' }}></i> */}
-{/*                        <span>퇴직금 계산</span> */}
-{/*                      </span> */}
-
-{/*                     <span className="border rounded-pill bg-light p-2 mx-2 fw-bold d-flex flex-column align-items-center" style={{ fontSize: '0.725rem', width: '100px' }}> */}
-{/*                       <i className="bi bi-spellcheck me-1 text-success" style={{ fontSize: '1.2rem' }}></i> */}
-{/*                       <span>연봉 계산</span> */}
-{/*                     </span> */}
-{/*                     </div> */}
-
-{/*                   </div> */}
-{/*             </div> */}
-{/*           </div> */}
 
 
 
-
-{/*         </div> */}
-
-
-
-            <div className="w-100 mt-5 p-4" style={{ backgroundColor: '#f3f4f8' }}>
-              {/* 버튼 영역 */}
-              <div className="mx-5 mb-4">
-                <button type="button" className="btn btn-success btn-sm mx-2 rounded-pill fw-semibold">
-                  <i className="bi bi-stars me-1"></i>회원님을 위한 추천공고
-                </button>
-                <button type="button" className="btn btn-light btn-sm mx-2 rounded-pill fw-semibold">
-                  <i className="bi bi-fire me-1"></i>지금 핫한 대기업 공고
-                </button>
-                <button type="button" className="btn btn-light btn-sm mx-2 rounded-pill fw-semibold">
-                  <i className="bi bi-bank me-1"></i>공기업 공고
-                </button>
-              </div>
-
-              {/* 캐러셀 시작 */}
-              <div id="jobCarousel" className="carousel slide" data-bs-ride="carousel">
-                <div className="carousel-inner">
-                  <div className="carousel-item active">
-                    {/* 상단 3개 카드 */}
-                    <div className="row mb-2">
-                      {[...Array(3)].map((_, idx) => (
-                        <NotiCard
-                            platformTitle={"사람인"}
-                            notiTitle={"2025년 신입/계약직 하반기 채용"}
-                            notiCompany={"유한킴벌리"}
-                            key={idx}
-                        />
-                      ))}
-                    </div>
-                    {/* 하단 3개 카드 */}
-                    <div className="row">
-                      {[...Array(3)].map((_, idx) => (
-                         <NotiCard
-                             platformTitle={"잡플래닛"}
-                             notiTitle={"2025년 신입/계약직 하반기 채용"}
-                             notiCompany={"유한킴벌리"}
-                             key={idx}
-                         />
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* 추가 슬라이드 */}
-                  <div className="carousel-item active">
-                    {/* 상단 3개 카드 */}
-                    <div className="row mb-2">
-                      {[...Array(3)].map((_, idx) => (
-                           <NotiCard
-                               platformTitle={"잡플래닛"}
-                               notiTitle={"2025년 신입/계약직 하반기 채용"}
-                               notiCompany={"유한킴벌리"}
-                               key={idx}
-                           />
-                      ))}
-                    </div>
-                    {/* 하단 3개 카드 */}
-                    <div className="row">
-                      {[...Array(3)].map((_, idx) => (
-                           <NotiCard
-                               platformTitle={"잡플래닛"}
-                               notiTitle={"2025년 신입/계약직 하반기 채용"}
-                               notiCompany={"유한킴벌리"}
-                               key={idx}
-                           />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* 캐러셀 좌우 버튼 */}
-                <button className="carousel-control-prev" type="button" data-bs-target="#jobCarousel" data-bs-slide="prev">
-                  <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span className="visually-hidden">이전</span>
-                </button>
-                <button className="carousel-control-next" type="button" data-bs-target="#jobCarousel" data-bs-slide="next">
-                  <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span className="visually-hidden">다음</span>
-                </button>
-              </div>
-            </div>
-
-
-
-            <div className="border border-1 " style={{backgroundColor: "#e0ffed"}}>
-              <div className="d-flex justify-content-center align-items-center">
-                 <ToolBadge
-                   badgeText={'실업급여 계산'}
-                   iconClass={'bi bi-journal-text'}
-                 />
-                 <ToolBadge
-                   badgeText={'퇴직금 계산'}
-                   iconClass={'bi bi-coin'}
-                 />
-                 <ToolBadge
-                   badgeText={'연봉 계산'}
-                   iconClass={'bi bi-cash-stack'}
-                 />
-                 <ToolBadge
-                   badgeText={'글자수 세기'}
-                   iconClass={'bi bi-body-text'}
-                 />
-                 <ToolBadge
-                   badgeText={'맞춤법 검사'}
-                   iconClass={'bi bi-spellcheck'}
-                 />
-              </div>
-           </div>
-
-
-            <div className="mt-3 p-0 m-0">
-              <div className="row">
-                {[...Array(6)].map((_, idx) => (
-                  <NewsCard
-                    index={idx}
-                    key={idx}
-                  />
-                ))}
-              </div>
-            </div>
 
     </div>
   );

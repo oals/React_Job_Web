@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SearchBarAccordion from './SearchBarAccordion';
 import SearchBarDefault from './SearchBarDefault';
+import RankList from '../../components/rank/RankList';
 
 const SearchBar = () => {
 
@@ -14,9 +15,9 @@ const SearchBar = () => {
                callBack={() => setIsSearchBarOpen(false)}
             />
       ) : (
-        <SearchBarDefault
-         callBack={() => setIsSearchBarOpen(true)}
-         />
+            <SearchBarDefault
+                callBack={() => setIsSearchBarOpen(true)}
+             />
       )}
     </>
   );

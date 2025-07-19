@@ -4,12 +4,10 @@ const SearchBarDefault = ({callBack}) => {
 
     return (
          <>
-            <span className="fw-bold fs-1 text-success">Job-X</span>
               <div
-                className="input-group ms-4 w-50"
+                className="input-group ms-4 w-50 border border-1 p-3 shadow-sm"
                 style={{
-                  border: "2px solid #198754",
-                  borderRadius: "50px",
+                  borderRadius: "150px",
                   overflow: "hidden",
                 }}
               >

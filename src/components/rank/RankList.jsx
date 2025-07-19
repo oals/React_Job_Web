@@ -5,9 +5,9 @@ const RankList = ({platformTitle,notiTitle,notiCompany}) => {
     return (
 
     <div className=" w-25 mx-5 px-5">
-      <div className="dropdown w-100">
+      <div className="dropdown w-75 rounded"  style={{backgroundColor: '#f3f4f6'}}>
         <button
-          className="btn btn-light w-100 dropdown-toggle fw-bold text-start px-3 py-2"
+          className="btn w-100 dropdown-toggle border-0 fw-bold text-start px-3 py-2"
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
