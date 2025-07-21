@@ -1,28 +1,21 @@
-
 import React from 'react';
 import { useState } from 'react';
 import SearchBar from '../components/search/SearchBar';
 import { Link } from 'react-router-dom';
 
-const HomePage = () => {
 
-  const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
+const SearchPage = () => {
 
+    return (
+        <div className="w-75 d-flex mx-auto flex-column ">
+           <div className="w-100 ">
+               <SearchBar />
+           </div>
 
-  return (
-    <div className="w-75 mx-auto flex-column">
+            <div className="w-100 d-flex flex-column justify-content-start align-items-start mt-5">
+                 <span className="mt-3">검색결과 56건</span>
 
-
-          <div className="d-flex justify-content-center align-items-center flex-column w-100 mt-5 p-3">
-            <h1 className="fw-bold">나에게 꼭 맞는 커리어를 찾아보세요.</h1>
-            <span className="mb-4" style={{fontSize: '1.2rem'}}>키워드, 분야, 또는 나만의 성향으로 직업을 검색할 수 있어요.</span>
-
-            <SearchBar />
-
-
-            <div className="d-flex justify-content-start align-items-start flex-column w-100 mt-3">
-
-                 <span className="fw-bold text-dark mb-4" style={{fontSize: '1.8rem'}}>추천 직업</span>
+                 <div className="mt-3">
                     <section>
                       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 
@@ -113,39 +106,26 @@ const HomePage = () => {
 
                       </div>
                     </section>
+                 </div>
 
-
-                    <section className="w-100 mt-5">
-                      <div className="bg-primary text-white rounded p-5 text-center">
-                        <h3 className="display-6 fw-bold">직업 검사</h3>
-                        <p className="lead mx-auto" style={{ maxWidth: '600px' }}>
-                          어디서부터 시작해야 할지 막막하신가요? 종합 퀴즈가 여러분의 성격, 관심사, <br/> 그리고 역량을 분석해 최적의 커리어 경로를 추천해 드립니다.
-                        </p>
-
-                        <Link to="/jobtestselect">
-                          <button className="btn btn-light btn-lg">
-                            시작하기
-                          </button>
-                        </Link>
-                      </div>
-                    </section>
-
-
-
-
+                 <div className="mt-4 mx-auto">
+                     <nav aria-label="Page navigation example">
+                     <ul class="pagination">
+                       <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                       <li class="page-item"><a class="page-link" href="#">1</a></li>
+                       <li class="page-item"><a class="page-link" href="#">2</a></li>
+                       <li class="page-item"><a class="page-link" href="#">3</a></li>
+                       <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                     </ul>
+                     </nav>
+                 </div>
 
             </div>
 
         </div>
+    )
 
 
-
-
-
-
-    </div>
-  );
 }
 
-
-export default HomePage;
+export default SearchPage;

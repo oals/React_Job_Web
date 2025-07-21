@@ -4,7 +4,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import JobRecommendationTestPage from './pages/JobRecommendationTestPage';
 import JobRecommendationResultPage from './pages/JobRecommendationResultPage';
-import SearchPage from './pages/search/SearchPage';
+import JobTestSelectPage from './pages/JobTestSelectPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import JobInfoPage from './pages/JobInfoPage';
+import SearchPage from './pages/SearchPage';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 import './App.css'
@@ -19,8 +23,12 @@ function App() {
                     <NavigationBar />
                     <Routes>
                         <Route path="/" element={<HomePage />} />
-                        <Route path="/JobRecommendationTestPage" element={<JobRecommendationTestPage />} />
-                        <Route path="/JobRecommendationResultPage" element={<JobRecommendationResultPage />} />
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/register" element={<RegisterPage />} />
+                        <Route path="/jobinfo" element={<JobInfoPage />} />
+                        <Route path="/jobtestselect" element={<JobTestSelectPage />} />
+                        <Route path="/jobrecommendationtest" element={<JobRecommendationTestPage />} />
+                        <Route path="/jobrecommendationresult" element={<JobRecommendationResultPage />} />
                         <Route path="/search" element={<SearchPage />} />
                     </Routes>
                 </div>
