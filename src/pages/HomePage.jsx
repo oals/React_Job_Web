@@ -20,15 +20,14 @@ const HomePage = () => {
             <SearchBar />
 
 
-            <div className="d-flex justify-content-start align-items-start flex-column w-100 mt-3">
+            <div className="d-flex justify-content-start align-items-start flex-column w-100 mt-5">
 
-                 <span className="fw-bold text-dark mb-4" style={{fontSize: '1.8rem'}}>추천 직업</span>
+                 <span className="fw-bold text-dark mb-0" style={{fontSize: '1.8rem'}}>추천 직업</span>
                     <section>
-                      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-
+                      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 p-4">
 
                         <div className="col">
-                          <div className="card h-100 shadow-sm">
+                          <div className="card h-100 shadow border border-0">
                             <div className="d-flex flex-column flex-md-row align-items-center p-3">
                               <img
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVPe_r8Kt6jPJ7Sm9YoYqL3GBBlbBoDFJuj5ecni_29E3jDCGIvezQHs6sjCWfPV8EJTaeiLA0pNxr7pYz_GSrl3ZAQjYk5AflQBZuRYP0dflKITc3sOus9cbzGxoR0Fkn97Wbv2rTRldZS4ZMeGSUQt6wrSo237MMaVjm9EWcjYbSqvWQTdbJkszABlI5CPetNFkokBRkRQyXhaq0MVoWbSg1h86D1fdtUOkEAVe3icCL7szJ3aO1MpDp2wXhoT7HxLzBtXeK8-Y"
@@ -36,7 +35,7 @@ const HomePage = () => {
                                 className="rounded mb-3 mb-md-0"
                                 style={{ width: '144px', height: '144px', objectFit: 'cover' }}
                               />
-                              <div className="ms-md-3 text-center text-md-start">
+                              <div className="ms-md-3 text-center text-md-start ">
                                 <span className="badge bg-primary mb-2">IT</span>
                                 <h5 className="card-title">소프트웨어 엔지니어</h5>
                                 <p className="card-text text-muted"
@@ -57,7 +56,7 @@ const HomePage = () => {
 
 
                         <div className="col">
-                          <div className="card h-100 shadow-sm">
+                          <div className="card h-100 shadow border border-0">
                             <div className="d-flex flex-column flex-md-row align-items-center p-3">
                               <img
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuD42s7ezjtz8uQZ1zod6Zj2Ki3uPqiiDTE8pLUGowa3pBrgTJcTG-Rt_WyfleFQtb3lEF7P27Ii7pMunD8nGpRwjC6Lktdz-j7RKWJLTfn2Yruz8yLyATaYkt6QEc3gzvOEnmrvjzKn0Ey9Jf4qUQxRwZKqSi3mIbIv91m6g-S-56PsSgwPy9rrl9xKZHHLQZLSwkCsyXSSPksixcIuDIznQ3X7bnLrWqYkcPwAEzPaFa3T3fRLYnQm9MPzN01mkc3Z_MaiNBvg9tc"
@@ -85,7 +84,7 @@ const HomePage = () => {
 
 
                         <div className="col">
-                          <div className="card h-100 shadow-sm">
+                          <div className="card h-100 shadow border border-0">
                             <div className="d-flex flex-column flex-md-row align-items-center p-3">
                               <img
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBppCNGxayWe02IfWZjfDRzzlwtD05zqvbTKG5bjgjhhx21QmScrVOOgvzskAbERFmhHyqLVuJPlgohiXhaQDdQLknvHclN4h0W9HQ-MRqRZbMY_BL-YWnEvhLX_yZg-mGVHf07Okxf6pabfLZCs_hxkzW6dxtYfsH_zuiTknslYhqnjzSxFQOPDeqZI36hF9hby9bkhMYA9hNs79GPzKgNrTju6MbWeHWBWg48UgY-rY-VQb8MnHuJJVpBlbZO9SQ5CIBeSv7RfWE"
@@ -115,7 +114,7 @@ const HomePage = () => {
                     </section>
 
 
-                    <section className="w-100 mt-5">
+                    <section className="w-100 mt-5 mb-2">
                       <div className="bg-primary text-white rounded p-5 text-center">
                         <h3 className="display-6 fw-bold">직업 검사</h3>
                         <p className="lead mx-auto" style={{ maxWidth: '600px' }}>
@@ -123,17 +122,115 @@ const HomePage = () => {
                         </p>
 
                         <Link to="/jobtestselect">
-                          <button className="btn btn-light btn-lg">
-                            시작하기
+                          <button className="fs-6 text-primary fw-bold btn btn-light btn-lg mt-3">
+                            검사 시작하기
                           </button>
                         </Link>
                       </div>
                     </section>
 
 
+                <div className="w-100 px-0">
+
+                 <span className="fw-bold text-dark mb-0 mt-5 d-flex" style={{fontSize: '1.8rem'}}>최신 커리어 뉴스</span>
+                 <section>
+                   <div className="row g-4">
+                    <div className="col-md-6 col-lg-3">
+                      <div className="card shadow-sm border-0">
+
+                        <img
+                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU_M9O4Fxjj32mYVswn218lXZ3MW6xZFXvhK_DXxb2MNK6oIUq0-68woCb1XWofWv5_w7SJ9xiXnfJCb2F4yBJqLHGxUEiMAj85lysYb2kPxFrA2rb3a6dypIYcUiOpPwqQUTLCk4IYcko_K0_jNrY6NZt06wHSkjeITSGzOcsZwecWK8-e1tfLEmcIrgtIq8sQgzaZWH-iydoeUtW83vIjpAnQVuQhvhL0QH6CzQ906owg1m95HFYnzT_PEJv2ZJap3HvTUOmWwAB"
+                          className="card-img-top"
+                          alt="People collaborating in a modern office."
+                          style={{ height: '180px', objectFit: 'cover' }}
+                        />
+
+                        <div className="card-body d-flex flex-column justify-content-start align-items-start">
+                          <small className="text-muted">취업 트렌드</small>
+                          <span className="card-title mt-2 mb-2 fw-bold" style={{ fontSize: '1.05rem' }}>
+                            2024년 상반기 채용 시장 전망
+                          </span>
+                          <p className="card-text text-secondary">
+                            AI 기술의 발전과 함께 새로운 직업들이 부상하고 있습니다. 미래 유망 직종에 대해 알아보세요.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+
+                   <div className="col-md-6 col-lg-3">
+                     <div className="card shadow-sm border-0">
+
+                       <img
+                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU_M9O4Fxjj32mYVswn218lXZ3MW6xZFXvhK_DXxb2MNK6oIUq0-68woCb1XWofWv5_w7SJ9xiXnfJCb2F4yBJqLHGxUEiMAj85lysYb2kPxFrA2rb3a6dypIYcUiOpPwqQUTLCk4IYcko_K0_jNrY6NZt06wHSkjeITSGzOcsZwecWK8-e1tfLEmcIrgtIq8sQgzaZWH-iydoeUtW83vIjpAnQVuQhvhL0QH6CzQ906owg1m95HFYnzT_PEJv2ZJap3HvTUOmWwAB"
+                         className="card-img-top"
+                         alt="People collaborating in a modern office."
+                         style={{ height: '180px', objectFit: 'cover' }}
+                       />
+
+                       <div className="card-body d-flex flex-column justify-content-start align-items-start">
+                         <small className="text-muted">취업 트렌드</small>
+                         <span className="card-title mt-2 mb-2 fw-bold" style={{ fontSize: '1.05rem' }}>
+                           2024년 상반기 채용 시장 전망
+                         </span>
+                         <p className="card-text text-secondary">
+                           AI 기술의 발전과 함께 새로운 직업들이 부상하고 있습니다. 미래 유망 직종에 대해 알아보세요.
+                         </p>
+                       </div>
+                     </div>
+                   </div>
+
+                    <div className="col-md-6 col-lg-3">
+                      <div className="card shadow-sm border-0">
+
+                        <img
+                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU_M9O4Fxjj32mYVswn218lXZ3MW6xZFXvhK_DXxb2MNK6oIUq0-68woCb1XWofWv5_w7SJ9xiXnfJCb2F4yBJqLHGxUEiMAj85lysYb2kPxFrA2rb3a6dypIYcUiOpPwqQUTLCk4IYcko_K0_jNrY6NZt06wHSkjeITSGzOcsZwecWK8-e1tfLEmcIrgtIq8sQgzaZWH-iydoeUtW83vIjpAnQVuQhvhL0QH6CzQ906owg1m95HFYnzT_PEJv2ZJap3HvTUOmWwAB"
+                          className="card-img-top"
+                          alt="People collaborating in a modern office."
+                          style={{ height: '180px', objectFit: 'cover' }}
+                        />
+
+                        <div className="card-body d-flex flex-column justify-content-start align-items-start">
+                          <small className="text-muted">취업 트렌드</small>
+                          <span className="card-title mt-2 mb-2 fw-bold" style={{ fontSize: '1.05rem' }}>
+                            2024년 상반기 채용 시장 전망
+                          </span>
+                          <p className="card-text text-secondary">
+                            AI 기술의 발전과 함께 새로운 직업들이 부상하고 있습니다. 미래 유망 직종에 대해 알아보세요.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                     <div className="col-md-6 col-lg-3">
+                       <div className="card shadow-sm border-0">
+
+                         <img
+                           src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU_M9O4Fxjj32mYVswn218lXZ3MW6xZFXvhK_DXxb2MNK6oIUq0-68woCb1XWofWv5_w7SJ9xiXnfJCb2F4yBJqLHGxUEiMAj85lysYb2kPxFrA2rb3a6dypIYcUiOpPwqQUTLCk4IYcko_K0_jNrY6NZt06wHSkjeITSGzOcsZwecWK8-e1tfLEmcIrgtIq8sQgzaZWH-iydoeUtW83vIjpAnQVuQhvhL0QH6CzQ906owg1m95HFYnzT_PEJv2ZJap3HvTUOmWwAB"
+                           className="card-img-top"
+                           alt="People collaborating in a modern office."
+                           style={{ height: '180px', objectFit: 'cover' }}
+                         />
+
+                         <div className="card-body d-flex flex-column justify-content-start align-items-start">
+                           <small className="text-muted">취업 트렌드</small>
+                           <span className="card-title mt-2 mb-2 fw-bold" style={{ fontSize: '1.05rem' }}>
+                             2024년 상반기 채용 시장 전망
+                           </span>
+                           <p className="card-text text-secondary">
+                             AI 기술의 발전과 함께 새로운 직업들이 부상하고 있습니다. 미래 유망 직종에 대해 알아보세요.
+                           </p>
+                         </div>
+                       </div>
+                     </div>
+
+                   </div>
+                 </section>
 
 
 
+
+            </div>
             </div>
 
         </div>

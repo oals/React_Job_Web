@@ -20,15 +20,15 @@ const RegisterPage = () => {
         <div className="d-flex flex-grow-1 justify-content-center align-items-start py-5 px-3">
           <div className="card w-100 border border-0">
             <div className="card-body">
-              <h2 className="text-center mb-5">회원 가입</h2>
+              <h2 className="text-center mb-5 fw-bold">회원 가입</h2>
 
                 <div className="d-flex justify-content-between">
-                    <div className="d-flex flex-column align-items-start border border-1 w-50 p-4 rounded shadow-sm">
+                    <div className="d-flex flex-column align-items-start border border-0 shadow w-50 p-4 rounded">
                      <h4 className="fw-bold mb-4">기본 정보</h4>
                      <div className="mb-3">
                          <input
                            type="email"
-                           className="form-control rounded-pill bg-light p-3 w-100"
+                           className="form-control rounded-pill bg-light p-3 w-100 "
                            placeholder="이메일"
                          />
                     </div>
@@ -87,7 +87,7 @@ const RegisterPage = () => {
 
                 </div>
 
-                  <div className="mx-5 d-flex flex-column align-items-start border border-1 w-50 p-4 rounded shadow-sm">
+                  <div className="mx-5 d-flex flex-column align-items-start border border-0 w-50 p-4 rounded shadow">
                       <h4 className="fw-bold mb-4">추가 정보</h4>
                       <label htmlFor="mbtiSelect" className="fw-bold text-secondary mb-2">
                         MBTI
@@ -115,7 +115,7 @@ const RegisterPage = () => {
 
 
 
-                      <div className="w-100 d-flex flex-column align-items-start mb-3">
+                      <div className="w-100 d-flex flex-column align-items-start mb-3 mt-3">
                         <span className="fw-bold text-secondary mb-2 d-block">성별</span>
 
                         <div
@@ -132,7 +132,7 @@ const RegisterPage = () => {
                             defaultChecked
                           />
                           <label
-                            className="btn btn-outline-primary flex-grow-1"
+                            className="btn btn-outline-primary gender-label flex-grow-1 p-3 me-2 border border-0"
                             htmlFor="genderMale"
                           >
                             남성
@@ -146,7 +146,7 @@ const RegisterPage = () => {
                             autoComplete="off"
                           />
                           <label
-                            className="btn btn-outline-primary flex-grow-1"
+                            className="btn btn-outline-primary gender-label flex-grow-1 p-3 border border-0"
                             htmlFor="genderFemale"
                           >
                             여성
@@ -160,7 +160,7 @@ const RegisterPage = () => {
                             autoComplete="off"
                           />
                           <label
-                            className="btn btn-outline-primary flex-grow-1"
+                            className="btn btn-outline-primary gender-label flex-grow-1 p-3 mx-2 border border-0"
                             htmlFor="genderOther"
                           >
                             기타

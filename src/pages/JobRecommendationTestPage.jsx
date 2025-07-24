@@ -97,7 +97,7 @@ const JobRecommendationTestPage = () => {
                   key={score}
                   className={`form-check border rounded p-3 mb-3 ${
                     responses[currentIndex] === score
-                      ? 'bg-primary text-white border-primary'
+                      ? 'bg-outline-primary text-primary border-primary border-2'
                       : 'bg-white text-dark'
                   }`}
                   onClick={() => handleSelect(score)}

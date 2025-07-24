@@ -6,10 +6,10 @@ const LoginPage = () => {
 
     return (
 
-        <div className=" mx-auto flex-column" style={{width: '40%'}}>
+        <div className=" mx-auto flex-column border border-1 rounded shadow-lg p-4 mt-5" style={{width: '30%'}}>
             <span class="fw-bold tracking-light font-bold leading-tight px-4 text-center pb-3 pt-5" style={{fontSize: '2.0rem'}}>Welcome back</span>
 
-            <div className="d-flex flex-column justify-content-start align-items-start w-50 mt-5">
+            <div className="d-flex flex-column justify-content-start align-items-start w-100 mt-5">
                 <span className="fw-semibold" style={{fontSize: '1.1rem'}}>이메일</span>
                 <div className="w-100 mt-3">
                   <input
@@ -26,7 +26,7 @@ const LoginPage = () => {
                   />
                 </div>
             </div>
-            <div className="d-flex flex-column justify-content-start align-items-start w-50 mt-4">
+            <div className="d-flex flex-column justify-content-start align-items-start w-100 mt-4">
                 <span className="fw-semibold" style={{fontSize: '1.1rem'}}>비밀번호</span>
                 <div className="w-100 mt-3">
                   <input
@@ -44,16 +44,16 @@ const LoginPage = () => {
                 </div>
             </div>
 
-            <div className="d-flex mt-3">
+            <div className="d-flex justify-content-end align-items-end mt-3">
                 <span className="fw-bold text-primary" style={{fontSize: '0.9rem'}}>비밀번호를 잊어버리셨나요?</span>
             </div>
 
             <div className="d-flex mt-3">
-               <button className="btn btn-primary w-100 fw-bold rounded-fill p-3" style={{fontSize: '1.2rem'}}> 로그인 </button>
+               <button className="btn btn-primary w-100 fw-bold rounded-fill p-2" style={{fontSize: '1.0rem'}}> 로그인 </button>
             </div>
 
             <div className="mt-3">
-               <a href="#" className="link-primary p-3"> 계정이 없으신가요? 가입하기</a>
+              <span className="text-secondary">계정이 없으신가요?</span> <a href="#" className="link-primary"> 가입하기</a>
             </div>
 
 

@@ -1,7 +1,7 @@
 #root {
   width: 100%;
-  margin: 1rem auto 0 auto;
-  padding: 3rem;
+  margin: 1rem 0 0 0;
+  padding: 3rem 0 0 0;
   text-align: center;
 }
 .accordion-button:not(.collapsed) {
@@ -17,6 +17,43 @@
 .accordion-collapse.collapsing {
   transition: none !important;
 }
+
+/* 기본: 선택되지 않은 상태 (회색 배경) */
+.gender-label {
+  background-color: #e9ecef; /* 밝은 회색 */
+  color: #6c757d; /* 회색 텍스트 */
+  border: 1px solid #ced4da;
+  transition: all 0.2s ease-in-out;
+}
+
+/* 선택된 상태 */
+.btn-check:checked + .gender-label {
+  background-color: #0d6efd; /* Bootstrap primary */
+  color: white;
+  border-color: #0d6efd;
+}
+
+ .skill-pill {
+   display: inline-block;
+   min-width: 80px;
+   text-align: center;
+   padding: 0.5rem 1rem;
+   border-radius: 50rem;
+   font-weight: 600;
+   font-size: 0.9rem;
+   background-color: #d1e7dd;
+   color: #0f5132;
+ }
+
+ .skill-container {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   gap: 0.5rem;
+ }
+
+
+
 .list-group-item.active {
     background-color: #198754 !important;
     color: #fff !important;
