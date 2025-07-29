@@ -1,10 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-
-
-const NavigationBar = () => {
+const NavigationBar = ({ isLogin, setIsLogin }) => {
 
   return (
     <nav
@@ -33,12 +31,25 @@ const NavigationBar = () => {
               </div>
          </div>
          <div>
-             <Link to="/login" className="me-4 link-offset-2 link-underline link-underline-opacity-0">
-                <span className="ms-4 link-offset-2 text-secondary link-underline link-underline-opacity-0"> 로그인 </span>
-             </Link>
-              <Link to="/register" className="me-4 link-offset-2 link-underline link-underline-opacity-0">
-                <span className="ms-4 link-offset-2 link-underline text-secondary link-underline-opacity-0"> 회원가입 </span>
-             </Link>
+            {isLogin ? (
+              <>
+                <span className="me-4 text-secondary">환영합니다!</span>
+                <button onClick={() => {
+                  localStorage.setItem('isLogin', "false");
+                  setIsLogin(false);
+                }} className="btn btn-outline-secondary">로그아웃</button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="me-4 link-offset-2 link-underline link-underline-opacity-0">
+                  <span className="ms-4 text-secondary">로그인</span>
+                </Link>
+                <Link to="/register" className="me-4 link-offset-2 link-underline link-underline-opacity-0">
+                  <span className="ms-4 text-secondary">회원가입</span>
+                </Link>
+              </>
+            )}
+
          </div>
       </div>
     </nav>

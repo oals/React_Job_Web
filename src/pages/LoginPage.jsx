@@ -1,13 +1,49 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { login } from '../utils/api';
+import { useNavigate } from 'react-router-dom';
 
-const LoginPage = () => {
+const LoginPage = ({setIsLogin}) => {
+
+    const navigate = useNavigate();
+    const [memberEmail, setMemberEmail] = useState('');
+    const [memberPassword, setMemberPassword] = useState('');
+
+    const memberLogin = async () => {
+
+       const loginData = {
+         memberEmail: memberEmail,
+         memberPassword: memberPassword
+       };
+
+       try {
+         const res = await login(loginData);
+
+         if (res.status === 200) {
+             alert('로그인이 완료 되었습니다.')
+             localStorage.setItem('isLogin', "true");
+             setIsLogin(true)
+             navigate('/');
+
+         } else {
+             alert('잠시 후 다시 시도해주세요.')
+         }
+
+       } catch (error) {
+         console.error('실패:', error);
+       }
+     };
+
+
+
+
+
 
     return (
 
         <div className=" mx-auto flex-column border border-1 rounded shadow-lg p-4 mt-5" style={{width: '30%'}}>
-            <span class="fw-bold tracking-light font-bold leading-tight px-4 text-center pb-3 pt-5" style={{fontSize: '2.0rem'}}>Welcome back</span>
+            <span className="fw-bold tracking-light font-bold leading-tight px-4 text-center pb-3 pt-5" style={{fontSize: '2.0rem'}}>Welcome back</span>
 
             <div className="d-flex flex-column justify-content-start align-items-start w-100 mt-5">
                 <span className="fw-semibold" style={{fontSize: '1.1rem'}}>이메일</span>
@@ -18,6 +54,8 @@ const LoginPage = () => {
                     placeholder="Email"
                     aria-label="Example text with button addon"
                     aria-describedby="button-addon1"
+                    value={memberEmail}
+                    onChange={(e) => setMemberEmail(e.target.value)}
                     style={{
                       outline: "none",
                       boxShadow: "none",
@@ -35,6 +73,8 @@ const LoginPage = () => {
                     placeholder="비밀번호"
                     aria-label="Example text with button addon"
                     aria-describedby="button-addon1"
+                    value={memberPassword}
+                    onChange={(e) => setMemberPassword(e.target.value)}
                     style={{
                       outline: "none",
                       boxShadow: "none",
@@ -49,7 +89,7 @@ const LoginPage = () => {
             </div>
 
             <div className="d-flex mt-3">
-               <button className="btn btn-primary w-100 fw-bold rounded-fill p-2" style={{fontSize: '1.0rem'}}> 로그인 </button>
+               <button onClick={memberLogin} className="btn btn-primary w-100 fw-bold rounded-fill p-2" style={{fontSize: '1.0rem'}}> 로그인 </button>
             </div>
 
             <div className="mt-3">

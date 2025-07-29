@@ -1,13 +1,12 @@
 
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SearchBar from '../components/search/SearchBar';
 import { Link } from 'react-router-dom';
 
 const HomePage = () => {
 
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
-
 
   return (
     <div className="w-75 mx-auto flex-column">
@@ -18,7 +17,6 @@ const HomePage = () => {
             <span className="mb-4" style={{fontSize: '1.2rem'}}>키워드, 분야, 또는 나만의 성향으로 직업을 검색할 수 있어요.</span>
 
             <SearchBar />
-
 
             <div className="d-flex justify-content-start align-items-start flex-column w-100 mt-5">
 

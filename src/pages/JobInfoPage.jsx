@@ -1,7 +1,33 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { searchJobInfo } from '../utils/api';
+
+
 
 const JobInfoPage = () => {
+
+    const jobCd = new URLSearchParams(useLocation().search).get('jobCd');
+    const [jobInfo, setJobInfo] = useState(null)
+
+    useEffect(() => {
+        const searchData = async () => {
+          try {
+            const response = await searchJobInfo(jobCd);
+            const data = await response.json();
+            console.log(data['jobInfo'])
+            setJobInfo(data['jobInfo'])
+
+
+          } catch (error) {
+            console.error('검색 중 오류:', error);
+          }
+        };
+
+        if (jobCd) {
+          searchData();
+        }
+    }, [jobCd]);
 
     return (
        <div className="w-75 mx-auto">
@@ -25,25 +51,19 @@ const JobInfoPage = () => {
             className="position-absolute bottom-0 start-50 translate-middle-x text-primary fw-bold mb-5 pb-1"
             style={{ zIndex: 2 }}
           >
-            IT & 개발
+            {jobInfo.jobLrclNm}
           </h5>
         <h1
           className="position-absolute bottom-0 start-50 translate-middle-x text-white fw-bold fs-2 mb-3"
           style={{ zIndex: 2 }}
         >
-          소프트웨어 엔지니어
+          {jobInfo.jobMdclNm}
         </h1>
 
-
-
         </div>
-
             <div className="w-50 mx-auto">
                    <p className="fs-6 text-secondary mb-5">
-                     <strong>소프트웨어 엔지니어</strong>는 다양한 산업 분야에서 사용되는
-                     소프트웨어 애플리케이션을 설계·개발·테스트·유지보수합니다. 프로그래밍
-                     언어와 자료구조, 알고리즘을 활용해 문제를 해결하며, 다른 엔지니어,
-                     제품 기획자, 디자이너 등과 협업해 고품질의 소프트웨어를 만듭니다.
+                     {jobInfo.way}
                    </p>
             </div>
 
@@ -106,43 +126,43 @@ const JobInfoPage = () => {
 
 
 
-<div className="container bg-white py-5">
-  <div className="text-center mb-5">
-    <h2 className="fw-bold fs-2 text-dark">평균 연봉</h2>
-    <p className="fs-5 text-muted">경력과 기술 스택에 따라 연봉은 달라질 수 있습니다.</p>
-  </div>
+            <div className="container bg-white py-5">
+              <div className="text-center mb-5">
+                <h2 className="fw-bold fs-2 text-dark">평균 연봉</h2>
+                <p className="fs-5 text-muted">경력과 기술 스택에 따라 연봉은 달라질 수 있습니다.</p>
+              </div>
 
-  <div className="row justify-content-center gy-4">
+              <div className="row justify-content-center gy-4">
 
-    {/* 신입 */}
-    <div className="col-md-4 shadow">
-      <div className="card bg-light h-100 text-center p-4 border-0 rounded-4 shadow-sm">
-        <h3 className="fs-4 fw-bold text-dark mb-2">신입 (1~3년)</h3>
-        <p className="fs-2 fw-bold text-primary mb-0">₩4,500만</p>
-        <p className="text-muted mt-2">이상</p>
-      </div>
-    </div>
+                {/* 신입 */}
+                <div className="col-md-4 shadow">
+                  <div className="card bg-light h-100 text-center p-4 border-0 rounded-4 shadow-sm">
+                    <h3 className="fs-4 fw-bold text-dark mb-2">{jobInfo.sal.replaceAll(',', '').split(' ')[2]}</h3>
+                    <p className="fs-2 fw-bold text-primary mb-0">₩ {jobInfo.sal.replaceAll(',', '').split(' ')[3]}만</p>
+                    <p className="text-muted mt-2">이상</p>
+                  </div>
+                </div>
 
-    {/* 중급 */}
-    <div className="col-md-4 shadow">
-      <div className="card bg-primary h-100 text-center text-white p-4 border-0 rounded-4 shadow">
-        <h3 className="fs-4 fw-bold mb-2">중급 (4~8년)</h3>
-        <p className="fs-2 fw-bold mb-0">₩7,000만</p>
-        <p className="text-light mt-2">이상</p>
-      </div>
-    </div>
+                {/* 중급 */}
+                <div className="col-md-4 shadow">
+                  <div className="card bg-primary h-100 text-center text-white p-4 border-0 rounded-4 shadow">
+                    <h3 className="fs-4 fw-bold mb-2">{jobInfo.sal.replaceAll(',', '').split(' ')[4]}</h3>
+                    <p className="fs-2 fw-bold mb-0">₩ {jobInfo.sal.replaceAll(',', '').split(' ')[5]}</p>
+                    <p className="text-light mt-2">이상</p>
+                  </div>
+                </div>
 
-    {/* 고급 */}
-    <div className="col-md-4 shadow">
-      <div className="card bg-light h-100 text-center p-4 border-0 rounded-4 shadow-sm">
-        <h3 className="fs-4 fw-bold text-dark mb-2">고급 (8년 이상)</h3>
-        <p className="fs-2 fw-bold text-primary mb-0">₩1억</p>
-        <p className="text-muted mt-2">이상</p>
-      </div>
-    </div>
+                {/* 고급 */}
+                <div className="col-md-4 shadow">
+                  <div className="card bg-light h-100 text-center p-4 border-0 rounded-4 shadow-sm">
+                    <h3 className="fs-4 fw-bold text-dark mb-2">{jobInfo.sal.replaceAll(',', '').split(' ')[6]}</h3>
+                    <p className="fs-2 fw-bold text-primary mb-0">₩ {jobInfo.sal.replaceAll(',', '').split(' ')[7]}</p>
+                    <p className="text-muted mt-2">이상</p>
+                  </div>
+                </div>
 
-  </div>
-</div>
+              </div>
+            </div>
 
            <div className="d-flex mt-5 flex-column w-100 pt-0 p-5">
             <h2 className="fw-bold fs-2 text-dark">주요 업무</h2>

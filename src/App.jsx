@@ -14,16 +14,17 @@ import Footer from './components/Footer';
 import './App.css'
 
 function App() {
-
+  const [isLogin, setIsLogin] = useState(localStorage.getItem('isLogin') === "true");
+	
   return (
     <>
         <main className="mt-5 flex-grow-1">
             <Router>
                  <div className="d-flex flex-column min-vh-100 ">
-                    <NavigationBar />
+                    <NavigationBar isLogin={isLogin} setIsLogin={setIsLogin}  />
                     <Routes>
                         <Route path="/" element={<HomePage />} />
-                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/login" element={<LoginPage setIsLogin={setIsLogin} />} />
                         <Route path="/register" element={<RegisterPage />} />
                         <Route path="/jobinfo" element={<JobInfoPage />} />
                         <Route path="/jobtestselect" element={<JobTestSelectPage />} />

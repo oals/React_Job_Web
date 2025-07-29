@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SearchBarDefault = ({callBack}) => {
+
+  const [keyword, setKeyword] = useState('');
+  const navigate = useNavigate();
 
     return (
          <>
@@ -29,12 +33,21 @@ const SearchBarDefault = ({callBack}) => {
                   placeholder="검색어를 입력하세요"
                   aria-label="Example text with button addon"
                   aria-describedby="button-addon1"
-                  readOnly
-                  onClick={() => callBack()}
+//                   readOnly
+//                   onClick={() => callBack()}
                   style={{
                     border: "none",
                     outline: "none",
                     boxShadow: "none",
+                  }}
+                  value={keyword}
+                  onChange={(e) => setKeyword(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      if (keyword.trim()) {
+                        navigate(`/search?text=${encodeURIComponent(keyword)}`);
+                      }
+                    }
                   }}
                 />
               </div>

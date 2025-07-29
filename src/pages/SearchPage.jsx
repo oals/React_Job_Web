@@ -1,17 +1,40 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SearchBar from '../components/search/SearchBar';
 import { Link } from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom';
+import { searchJobList } from '../utils/api';
+import SearchJobCardItem from '../components/search/SearchJobCardItem';
 
 const SearchPage = () => {
+
+   const findText = new URLSearchParams(useLocation().search).get('text');
+   const [jobList, setJobList] = useState([]);
+
+    useEffect(() => {
+      const searchData = async () => {
+        try {
+          const response = await searchJobList(findText);
+          const data = await response.json();
+          setJobList(data['jobList']);
+
+        } catch (error) {
+          console.error('검색 중 오류:', error);
+        }
+      };
+
+      if (findText) {
+        searchData();
+      }
+    }, [findText]);
+
 
     return (
         <div className="w-100 d-flex flex-column justify-content-center align-items-center ">
 
                <div className="mb-4 text-center">
-                 <h1 className="h3 fw-bold mb-2">‘프론트엔드 개발자’ 검색 결과</h1>
-                 <p className="text-muted">총 125건의 직업정보가 있습니다.</p>
+                 <h1 className="h3 fw-bold mb-2">‘{findText}’ 검색 결과</h1>
+                 <p className="text-muted">총 {jobList.length}건의 직업정보가 있습니다.</p>
                </div>
 
                <div className="row">
@@ -84,58 +107,25 @@ const SearchPage = () => {
                    </div>
 
                    <div className="d-grid gap-3">
-                     {/* 첫 번째 직업 카드 */}
-                       <div className="card shadow-sm">
-                         <div className="card-body">
-                           <div className="d-flex justify-content-between">
-                             <div className="d-flex flex-column">
-                               <a href="#" className="h5 d-block text-decoration-none text-start text-dark">UI/UX 디자이너</a>
-                               <small className="text-muted text-start">디자인</small>
-                             </div>
-                              <i class="bi bi-bookmark fs-4 text-secondary"></i>
-                           </div>
-                           <p className="mt-3 text-muted text-start">
-                             사용자 중심의 디자인 원칙에 따라 웹 및 모바일 애플리케이션의 인터페이스와 경험을 설계합니다. 사용자의 편의성과 만족도를 높이는 역할을 합니다.
-                           </p>
-                           <div className="d-flex flex-wrap gap-3 text-muted small mt-3">
-                             <span>평균 연봉: 5,500만원</span>
-                             <span>전망: 좋음</span>
-                             <span>핵심 역량: 프로토타이핑, 사용자 리서치</span>
-                           </div>
-                         </div>
-                       </div>
-                         <div className="card shadow-sm">
-                           <div className="card-body">
-                             <div className="d-flex justify-content-between">
-                               <div className="d-flex flex-column">
-                                 <a href="#" className="h5 d-block text-decoration-none text-start text-dark">UI/UX 디자이너</a>
-                                 <small className="text-muted text-start">디자인</small>
-                               </div>
 
-                                <i class="bi bi-bookmark-fill fs-4 text-danger"></i>
-                             </div>
-                             <p className="mt-3 text-muted text-start">
-                               사용자 중심의 디자인 원칙에 따라 웹 및 모바일 애플리케이션의 인터페이스와 경험을 설계합니다. 사용자의 편의성과 만족도를 높이는 역할을 합니다.
-                             </p>
-                             <div className="d-flex flex-wrap gap-3 text-muted small mt-3">
-                               <span>평균 연봉: 5,500만원</span>
-                               <span>전망: 좋음</span>
-                               <span>핵심 역량: 프로토타이핑, 사용자 리서치</span>
-                             </div>
-                           </div>
-                         </div>
+
+                    {jobList.length > 0 &&
+                      jobList.map((item, i) => (
+                        <SearchJobCardItem key={i} jobItem={item} />
+                    ))}
+
                    </div>
                  </section>
 
 
                  <div className="w-100 d-flex justify-content-center mt-5">
                      <nav aria-label="Page navigation example">
-                     <ul class="pagination">
-                       <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                       <li class="page-item"><a class="page-link" href="#">1</a></li>
-                       <li class="page-item"><a class="page-link" href="#">2</a></li>
-                       <li class="page-item"><a class="page-link" href="#">3</a></li>
-                       <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                     <ul className="pagination">
+                       <li className="page-item"><a className="page-link" href="#">Previous</a></li>
+                       <li className="page-item"><a className="page-link" href="#">1</a></li>
+                       <li className="page-item"><a className="page-link" href="#">2</a></li>
+                       <li className="page-item"><a className="page-link" href="#">3</a></li>
+                       <li className="page-item"><a className="page-link" href="#">Next</a></li>
                      </ul>
                      </nav>
                  </div>

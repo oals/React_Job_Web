@@ -1,17 +1,55 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { register } from '../utils/api';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
 
-  const [birthDate, setBirthDate] = useState('');
-  const [mbti, setMbti] = useState('');
+  const navigate = useNavigate();
+
+  const [memberFirstName, setMemberFirstName] = useState('');
+  const [memberSecondName, setMemberSecondName] = useState('');
+  const [memberEmail, setMemberEmail] = useState('');
+  const [memberPassword, setMemberPassword] = useState('');
+  const [memberGender, setMemberGender] = useState('');
+  const [birthYear, setBirthYear] = useState('');
+  const [birthMonth, setBirthMonth] = useState('');
+  const [birthDay, setBirthDay] = useState('');
+  const [memberMbti, setMemberMbti] = useState('');
+
   const mbtiOptions = [
     'INTJ','INTP','ENTJ','ENTP',
     'INFJ','INFP','ENFJ','ENFP',
     'ISTJ','ISFJ','ESTJ','ESFJ',
     'ISTP','ISFP','ESTP','ESFP'
   ];
+
+  const memberRegister = async () => {
+
+    const registerData = {
+      memberName: memberFirstName + memberSecondName,
+      memberEmail: memberEmail,
+      memberPassword: memberPassword,
+      memberGender: memberGender,
+      memberBirth: birthYear + "-" + birthMonth + "-" + birthDay,
+      memberMbti: memberMbti,
+    };
+
+      try {
+        const res = await register(registerData);
+
+        if (res.status === 200) {
+            alert('회원가입이 완료 되었습니다.')
+            navigate('/login');
+        } else {
+            alert('잠시 후 다시 시도해주세요.')
+        }
+
+      } catch (error) {
+        console.error('실패:', error);
+      }
+    };
 
 
   return (
@@ -26,11 +64,13 @@ const RegisterPage = () => {
                     <div className="d-flex flex-column align-items-start border border-0 shadow w-50 p-4 rounded">
                      <h4 className="fw-bold mb-4">기본 정보</h4>
                      <div className="mb-3">
-                         <input
-                           type="email"
-                           className="form-control rounded-pill bg-light p-3 w-100 "
-                           placeholder="이메일"
-                         />
+                        <input
+                          type="email"
+                          className="form-control rounded-pill bg-light p-3 w-100"
+                          placeholder="이메일"
+                          value={memberEmail}
+                          onChange={(e) => setMemberEmail(e.target.value)}
+                        />
                     </div>
                       <div className="w-100 d-flex justify-content-between">
                           <div className="mb-3">
@@ -38,6 +78,8 @@ const RegisterPage = () => {
                               type="text"
                               className="form-control rounded-pill bg-light p-3 w-100"
                               placeholder="이름"
+                              value={memberSecondName}
+                              onChange={(e) => setMemberSecondName(e.target.value)}
                             />
                           </div>
                           <div className="mx-3 mb-3">
@@ -45,6 +87,8 @@ const RegisterPage = () => {
                               type="text"
                               className="form-control rounded-pill bg-light p-3 w-100"
                               placeholder="성"
+                              value={memberFirstName}
+                              onChange={(e) => setMemberFirstName(e.target.value)}
                             />
                           </div>
                       </div>
@@ -54,6 +98,8 @@ const RegisterPage = () => {
                         type="password"
                         className="form-control rounded-pill bg-light p-3 w-100"
                         placeholder="비밀번호"
+                        value={memberPassword}
+                        onChange={(e) => setMemberPassword(e.target.value)}
                       />
                     </div>
 
@@ -66,6 +112,8 @@ const RegisterPage = () => {
                          placeholder="YYYY"
                          maxLength={4}
                          style={{ width: '30%' }}
+                         value={birthYear}
+                         onChange={(e) => setBirthYear(e.target.value)}
                        />
                        <input
                          type="text"
@@ -73,6 +121,8 @@ const RegisterPage = () => {
                          placeholder="MM"
                          maxLength={2}
                          style={{ width: '20%' }}
+                         value={birthMonth}
+                         onChange={(e) => setBirthMonth(e.target.value)}
                        />
                        <input
                          type="text"
@@ -80,6 +130,8 @@ const RegisterPage = () => {
                          placeholder="DD"
                          maxLength={2}
                          style={{ width: '20%' }}
+                         value={birthDay}
+                         onChange={(e) => setBirthDay(e.target.value)}
                        />
                      </div>
                    </div>
@@ -95,8 +147,8 @@ const RegisterPage = () => {
                       <select
                         id="mbtiSelect"
                         className="form-select w-100 mb-3"
-                        value={mbti}
-                        onChange={e => setMbti(e.target.value)}
+                        value={memberMbti}
+                        onChange={e => setMemberMbti(e.target.value)}
                       >
                         <option value="">MBTI를 선택하세요</option>
                         {mbtiOptions.map(type => (
@@ -107,9 +159,9 @@ const RegisterPage = () => {
                       </select>
 
                       {/* 선택된 MBTI 표시(선택사항) */}
-                      {mbti && (
+                      {memberMbti && (
                         <small className="text-muted">
-                          선택된 MBTI: <strong>{mbti}</strong>
+                          선택된 MBTI: <strong>{memberMbti}</strong>
                         </small>
                       )}
 
@@ -130,6 +182,8 @@ const RegisterPage = () => {
                             id="genderMale"
                             autoComplete="off"
                             defaultChecked
+                            value={"M"}
+                            onChange={(e) => setMemberGender(e.target.value)}
                           />
                           <label
                             className="btn btn-outline-primary gender-label flex-grow-1 p-3 me-2 border border-0"
@@ -144,6 +198,8 @@ const RegisterPage = () => {
                             name="gender"
                             id="genderFemale"
                             autoComplete="off"
+                            value={"F"}
+                            onChange={(e) => setMemberGender(e.target.value)}
                           />
                           <label
                             className="btn btn-outline-primary gender-label flex-grow-1 p-3 border border-0"
@@ -158,6 +214,8 @@ const RegisterPage = () => {
                             name="gender"
                             id="genderOther"
                             autoComplete="off"
+                            value={"None"}
+                            onChange={(e) => setMemberGender(e.target.value)}
                           />
                           <label
                             className="btn btn-outline-primary gender-label flex-grow-1 p-3 mx-2 border border-0"
@@ -173,7 +231,9 @@ const RegisterPage = () => {
                 </div>
 
                 <div className="mt-4 w-100">
-                    <button class="w-100 btn btn-primary text-white p-4 fw-bold font-bold rounded-lg hover:bg-indigo-700">
+                    <button className="w-100 btn btn-primary text-white p-4 fw-bold font-bold rounded-lg hover:bg-indigo-700"
+                        onClick={memberRegister}
+                    >
                         <span style={{fontSize: '1.2rem'}}>가입 완료하고 시작하기</span>
                     </button>
                 </div>
