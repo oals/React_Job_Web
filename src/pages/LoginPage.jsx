@@ -23,6 +23,7 @@ const LoginPage = ({setIsLogin}) => {
          if (res.status === 200) {
              alert('로그인이 완료 되었습니다.')
              localStorage.setItem('isLogin', "true");
+             localStorage.setItem('memberEmail', memberEmail);
              setIsLogin(true)
              navigate('/');
 
@@ -34,9 +35,6 @@ const LoginPage = ({setIsLogin}) => {
          console.error('실패:', error);
        }
      };
-
-
-
 
 
 

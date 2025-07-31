@@ -11,6 +11,7 @@ import JobInfoPage from './pages/JobInfoPage';
 import SearchPage from './pages/SearchPage';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
+import ScrollToTop from './components/common/ScrollToTop';
 import './App.css'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
     <>
         <main className="mt-5 flex-grow-1">
             <Router>
+                <ScrollToTop />
                  <div className="d-flex flex-column min-vh-100 ">
                     <NavigationBar isLogin={isLogin} setIsLogin={setIsLogin}  />
                     <Routes>

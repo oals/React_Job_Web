@@ -8,9 +8,9 @@ const JobTestSelectPage = () => {
     return (
 
         <div className="w-50 d-flex mx-auto flex-column mt-2">
-             <div class="">
-                <h1 class="md:text-6xl font-extrabold leading-tight">나를 찾아 떠나는 여행</h1>
-                <p class="text-xl max-w-3xl mx-auto mt-3">자신을 더 깊이 이해하고, 진로를 탐색하는 여정을 JobX와 함께 시작해보세요.</p>
+             <div className="">
+                <h1 className="md:text-6xl font-extrabold leading-tight">나를 찾아 떠나는 여행</h1>
+                <p className="text-xl max-w-3xl mx-auto mt-3">자신을 더 깊이 이해하고, 진로를 탐색하는 여정을 JobX와 함께 시작해보세요.</p>
              </div>
 
             <div className="row g-4 mt-3">
@@ -37,8 +37,8 @@ const JobTestSelectPage = () => {
                     </ul>
                     <div className="mt-auto text-center">
                       <small className="text-muted d-block mb-2">예상 소요 시간: 15-25분</small>
-                         <Link to="/jobrecommendationtest">
-                              <a href="#" className="btn btn-primary btn-sm w-100">검사 시작하기</a>
+                         <Link to="/jobrecommendationtest?testId=1">
+                              <span className="btn btn-primary btn-sm w-100">검사 시작하기</span>
                          </Link>
                     </div>
                   </div>
@@ -69,8 +69,8 @@ const JobTestSelectPage = () => {
                       </ul>
                       <div className="mt-auto text-center">
                         <small className="text-muted d-block mb-2">예상 소요 시간: 15-25분</small>
-                           <Link to="/jobrecommendationtest">
-                                <a href="#" className="btn btn-success btn-sm w-100">검사 시작하기</a>
+                           <Link to="/jobrecommendationtest?testId=2">
+                                <span className="btn btn-success btn-sm w-100">검사 시작하기</span>
                            </Link>
                       </div>
                     </div>
@@ -102,8 +102,8 @@ const JobTestSelectPage = () => {
                       </ul>
                       <div className="mt-auto text-center">
                         <small className="text-muted d-block mb-2">예상 소요 시간: 15-25분</small>
-                           <Link to="/jobrecommendationtest">
-                                <a href="#" className="btn btn-secondary btn-sm w-100">검사 시작하기</a>
+                           <Link to="/jobrecommendationtest?testId=3">
+                                <span className="btn btn-secondary btn-sm w-100">검사 시작하기</span>
                            </Link>
                       </div>
                     </div>

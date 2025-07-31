@@ -31,6 +31,18 @@ export function searchJobInfo(jobCd) {
   });
 }
 
-
+export function insertJobQuestion(result, memberEmail) {
+  return apiClient(`${API_URL}/test/insert/question`, {
+    method: 'POST',
+    credentials: "include",
+     headers: {
+         'Content-Type': 'application/json',
+     },
+     body: {
+           memberEmail : memberEmail,
+           jobTestResult: result,
+     },
+  });
+}
 
 

@@ -9,6 +9,9 @@ const JobInfoPage = () => {
 
     const jobCd = new URLSearchParams(useLocation().search).get('jobCd');
     const [jobInfo, setJobInfo] = useState(null)
+    const [uniqueCertParts, setUniqueCertParts] = useState([]);
+    const [uniqueMajorParts, setUniqueMajorParts] = useState([]);
+    const [uniqueJobActvImprtncsParts, setUniqueJobActvImprtncsParts] = useState([]);
 
     useEffect(() => {
         const searchData = async () => {
@@ -17,7 +20,6 @@ const JobInfoPage = () => {
             const data = await response.json();
             console.log(data['jobInfo'])
             setJobInfo(data['jobInfo'])
-
 
           } catch (error) {
             console.error('검색 중 오류:', error);
@@ -28,6 +30,28 @@ const JobInfoPage = () => {
           searchData();
         }
     }, [jobCd]);
+
+
+    useEffect(() => {
+      if (jobInfo?.certNm) {
+        const parts = jobInfo.certNm.split(/[\/,]/).map(s => s.trim());
+        const unique = [...new Set(parts)];
+        setUniqueCertParts(unique);
+
+        const parts2 = jobInfo.majorNm.split(/[\/,]/).map(s => s.trim());
+        const unique2 = [...new Set(parts2)];
+        setUniqueMajorParts(unique2);
+
+        const parts3 = jobInfo.jobProspect.split(/[ ]/).map(s => s.trim());
+        const unique3 = [...new Set(parts3)];
+        setUniqueJobActvImprtncsParts(unique3);
+
+      }
+    }, [jobInfo]);
+
+
+    if (jobInfo == null)
+        return <div>Loading...</div>;
 
     return (
        <div className="w-75 mx-auto">
@@ -61,39 +85,34 @@ const JobInfoPage = () => {
         </h1>
 
         </div>
-            <div className="w-50 mx-auto">
+            <div className="w-75 mx-auto">
                    <p className="fs-6 text-secondary mb-5">
                      {jobInfo.way}
                    </p>
             </div>
 
-               <div className="w-75 mx-auto bg-white">
+               <div className="w-50 mx-auto bg-white">
                     <div className="text-center">
                       <h2 className="fw-bold fs-2 text-dark">자격 요건</h2>
                     </div>
 
-                    <div className="row gy-4 justify-content-center">
+                    <div className="row gy-4 mx-auto justify-content-center">
 
-                      {/* 학력 */}
+
                       <div className="col-md-6">
                         <div className="card border-0 h-100 shadow-sm p-4 rounded-4">
                           <div className="d-flex align-items-center mb-4">
                             <i className="bi bi-mortarboard text-primary fs-2 me-3"></i>
-                            <h3 className="fs-4 fw-bold mb-0 text-dark">학력</h3>
+                            <h3 className="fs-4 fw-bold mb-0 text-dark">학과 (우대)</h3>
                           </div>
-                          <ul className="list-unstyled">
-                            <li className="d-flex mb-3">
-                              <i className="bi bi-check-circle-fill text-primary me-3"></i>
-                              <div className="d-flex flex-column justify-content-start align-items-start">
-                                <p className="fw-semibold mb-1">컴퓨터 공학 또는 관련 분야 학사 학위 이상</p>
-                                <p className="text-muted">일부 회사는 석사 또는 박사 학위를 선호할 수 있습니다.</p>
-                              </div>
+                       <ul>
+                          {uniqueMajorParts.map((part, index) => (
+                            <li key={index} className="d-flex align-items-start mb-3">
+                              <i className="bi bi-check-circle-fill text-success me-3"></i>
+                              <p className="fw-semibold mb-0">{part}</p>
                             </li>
-                            <li className="d-flex">
-                              <i className="bi bi-check-circle-fill text-primary me-3"></i>
-                              <p className="fw-semibold ">비전공자의 경우, 관련 부트캠프 수료 또는 이에 준하는 프로젝트 경험</p>
-                            </li>
-                          </ul>
+                          ))}
+                        </ul>
                         </div>
                       </div>
 
@@ -104,20 +123,15 @@ const JobInfoPage = () => {
                             <i className="bi bi-award-fill text-success fs-2 me-3"></i>
                             <h3 className="fs-4 fw-bold mb-0 text-dark">자격증 (우대)</h3>
                           </div>
-                          <ul className="list-unstyled">
-                            <li className="d-flex align-items-start mb-3">
-                              <i className="bi bi-check-circle-fill text-success me-3"></i>
-                              <p className="fw-semibold mb-0">정보처리기사</p>
-                            </li>
-                            <li className="d-flex align-items-start mb-3">
-                              <i className="bi bi-check-circle-fill text-success me-3"></i>
-                              <p className="fw-semibold mb-0">클라우드 관련 자격증 (AWS, GCP, Azure 등)</p>
-                            </li>
-                            <li className="d-flex align-items-start">
-                              <i className="bi bi-check-circle-fill text-success me-3"></i>
-                              <p className="fw-semibold mb-0">리눅스마스터, 네트워크관리사 등 직무 관련 자격증</p>
-                            </li>
-                          </ul>
+                         <ul>
+                           {uniqueCertParts.map((part, index) => (
+                             <li key={index} className="d-flex align-items-start mb-3">
+                               <i className="bi bi-check-circle-fill text-success me-3"></i>
+                               <p className="fw-semibold mb-0">{part}</p>
+                             </li>
+                           ))}
+                         </ul>
+
                         </div>
                       </div>
 
@@ -165,123 +179,26 @@ const JobInfoPage = () => {
             </div>
 
            <div className="d-flex mt-5 flex-column w-100 pt-0 p-5">
-            <h2 className="fw-bold fs-2 text-dark">주요 업무</h2>
+            <h2 className="fw-bold fs-2 text-dark">일자리 전망</h2>
             <section className="mt-4 w-100">
               <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 ">
 
-                {/* Card 1 */}
-                <div className="col">
-                  <div className="card shadow border border-0">
-                    <div className="d-flex flex-column flex-md-row align-items-center p-3">
-
-                      <div className="text-center text-md-start ms-md-3">
-                        <span className="badge bg-primary mb-4 p-3">Software</span>
-                      <h5 className="card-title mb-3">코딩 및 개발</h5>
-                       <p className="card-text text-muted">
-                         깨끗하고 효율적인 코드를 작성하여 소프트웨어 애플리케이션을 개발하고 유지보수합니다.
-                       </p>
-                      </div>
-                    </div>
+                {uniqueJobActvImprtncsParts.map((part, index) => (
+                  <div
+                    className={`col-md-3 shadow p-5 h-100 border-0 rounded-4 shadow card ${
+                      index === 0 ? 'bg-primary text-light' : 'bg-light text-dark'
+                    }`}
+                    key={index}
+                  >
+                    <h3 className="fs-4 fw-bold p-4">{part}</h3>
                   </div>
-                </div>
+                ))}
 
-
-
-
-                {/* Card 2 */}
-                <div className="col mx-auto">
-                  <div className="card shadow border border-0">
-                    <div className="d-flex flex-column flex-md-row align-items-center p-3">
-
-                      <div className="text-center text-md-start ms-md-3">
-                        <span className="badge bg-primary mb-4 p-3">Software</span>
-                      <h5 className="card-title mb-3">코딩 및 개발</h5>
-                       <p className="card-text text-muted">
-                         깨끗하고 효율적인 코드를 작성하여 소프트웨어 애플리케이션을 개발하고 유지보수합니다.
-                       </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Card 3 */}
-                 <div className="col mx-auto">
-                   <div className="card shadow border border-0">
-                     <div className="d-flex flex-column flex-md-row align-items-center p-3">
-
-                       <div className="text-center text-md-start ms-md-3">
-                         <span className="badge bg-primary mb-4 p-3">Software</span>
-                       <h5 className="card-title mb-3">코딩 및 개발</h5>
-                        <p className="card-text text-muted">
-                          깨끗하고 효율적인 코드를 작성하여 소프트웨어 애플리케이션을 개발하고 유지보수합니다.
-                        </p>
-                       </div>
-                     </div>
-                   </div>
-                 </div>
               </div>
             </section>
             </div>
 
-           <div className="d-flex mt-5 flex-column w-100 p-5 pt-0">
-            <h2 className="fw-bold fs-2 text-dark">필요 기술</h2>
-            <section className=" w-100">
-              <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 ">
 
-                {/* Card 1 */}
-                <div className="col text-center">
-                  <div className="card border-0 h-100 ">
-                    <div className="d-flex flex-column justify-content-center align-items-center h-100 p-4 pt-0 mt-0 ">
-                      <span className="badge mb-4 p-3 text-success" style={{background: '#d1e7dd'}}>Software</span>
-                      <h5 className="card-title mb-3">프로그래밍 언어</h5>
-                        <div className="skill-container my-3">
-                          <span className="skill-pill">Spring</span>
-                          <span className="skill-pill">React</span>
-                          <span className="skill-pill">Node.js</span>
-                          <span className="skill-pill">Django</span>
-                          <span className="skill-pill">Vue.js</span>
-                        </div>
-                    </div>
-                   </div>
-                </div>
-
-
-              <div className="col text-center">
-                <div className="card border-0 h-100">
-                  <div className="d-flex flex-column justify-content-center align-items-center h-100 p-4 pt-0 mt-0">
-                    <span className="badge mb-4 p-3 text-success" style={{background: '#d1e7dd'}}>Software</span>
-                    <h5 className="card-title mb-3">프로그래밍 언어</h5>
-                      <div className="skill-container my-3">
-                        <span className="skill-pill">Spring</span>
-                        <span className="skill-pill">React</span>
-                        <span className="skill-pill">Node.js</span>
-                        <span className="skill-pill">Django</span>
-                        <span className="skill-pill">Vue.js</span>
-                      </div>
-                  </div>
-                 </div>
-              </div>
-
-
-               <div className="col text-center">
-                 <div className="card border-0 h-100">
-                   <div className="d-flex flex-column justify-content-center align-items-center h-100 p-4 pt-0 mt-0">
-                     <span className="badge mb-4 p-3 text-success" style={{background: '#d1e7dd'}}>Software</span>
-                     <h5 className="card-title mb-3">프로그래밍 언어</h5>
-                       <div className="skill-container my-3">
-                         <span className="skill-pill">Spring</span>
-                         <span className="skill-pill">React</span>
-                         <span className="skill-pill">Node.js</span>
-                         <span className="skill-pill">Django</span>
-                         <span className="skill-pill">Vue.js</span>
-                       </div>
-                   </div>
-                  </div>
-               </div>
-
-              </div>
-            </section>
-            </div>
 
 
           </div>

@@ -36,6 +36,7 @@ const NavigationBar = ({ isLogin, setIsLogin }) => {
                 <span className="me-4 text-secondary">환영합니다!</span>
                 <button onClick={() => {
                   localStorage.setItem('isLogin', "false");
+                  localStorage.setItem('memberEmail', "");
                   setIsLogin(false);
                 }} className="btn btn-outline-secondary">로그아웃</button>
               </>
