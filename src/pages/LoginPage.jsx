@@ -21,9 +21,12 @@ const LoginPage = ({setIsLogin}) => {
          const res = await login(loginData);
 
          if (res.status === 200) {
+              const data = await res.json();
              alert('로그인이 완료 되었습니다.')
              localStorage.setItem('isLogin', "true");
              localStorage.setItem('memberEmail', memberEmail);
+             localStorage.setItem('memberId', data['memberId']);
+
              setIsLogin(true)
              navigate('/');
 
@@ -66,7 +69,7 @@ const LoginPage = ({setIsLogin}) => {
                 <span className="fw-semibold" style={{fontSize: '1.1rem'}}>비밀번호</span>
                 <div className="w-100 mt-3">
                   <input
-                    type="text"
+                    type="password"
                     className="form-control border border-1 rounded-lg p-3"
                     placeholder="비밀번호"
                     aria-label="Example text with button addon"

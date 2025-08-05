@@ -10,16 +10,18 @@ const JobRecommendationResultPage = () => {
   const [jobData, setJobData] = useState(null)
   const location = useLocation();
   const result = location.state?.result;
+  const testType = location.state?.testType;
 
   useEffect(() => {
+
     const insertData = async () => {
       try {
         setLoading(true);
         const memberEmail = localStorage.getItem('memberEmail');
-        const response = await insertJobQuestion(result, memberEmail);
-        const data = await response.json();
+        const response = await insertJobQuestion(result, memberEmail, testType);
+        const data = await response.text();
 
-        const onlyValues = data['response']
+        const onlyValues = data
           .trim()
           .split('\n')
           .map(line => line.split(':')[1]?.trim())
@@ -63,136 +65,131 @@ const JobRecommendationResultPage = () => {
             검사 결과를 토대로 당신에게 딱 맞는 커리어 경로를 추천해드립니다.
           </p>
 
-          <div className="d-flex align-items-start mt-5" style={{ width: '75%' }}>
-            <div className="w-50 d-flex justify-content-end">
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVPe_r8Kt6jPJ7Sm9YoYqL3GBBlbBoDFJuj5ecni_29E3jDCGIvezQHs6sjCWfPV8EJTaeiLA0pNxr7pYz_GSrl3ZAQjYk5AflQBZuRYP0dflKITc3sOus9cbzGxoR0Fkn97Wbv2rTRldZS4ZMeGSUQt6wrSo237MMaVjm9EWcjYbSqvWQTdbJkszABlI5CPetNFkokBRkRQyXhaq0MVoWbSg1h86D1fdtUOkEAVe3icCL7szJ3aO1MpDp2wXhoT7HxLzBtXeK8-Y"
-                alt="Software Engineer"
-                className="rounded mb-3 mb-md-0"
-                style={{ width: '400px', height: '400px', objectFit: 'cover' }}
-              />
-            </div>
-            <div className="w-100 mx-5 d-flex text-start align-items-start flex-column">
-              <span className="fw-bold" style={{ fontSize: '2.0rem' }}>{jobData[0]}</span>
-              <p className="text-secondary leading-relaxed mt-3" style={{ fontSize: '1.2rem' }}>
-                {jobData[1]}
+          <div className="d-flex align-items-start" style={{ width: '90%' }}>
+
+             <div className="w-50 d-flex justify-content-end align-items-start me-3">
+                 <i className={`${jobData[7]} p-0 m-0 me-5 mb-5`} style={{ fontSize: '13rem' }}></i>
+             </div>
+
+            <div className="w-100 mx-5 d-flex text-start align-items-start flex-column mt-5">
+              <span className="text-secondary fw-bold" style={{ fontSize: '1.0rem' }}>{jobData[1]}</span>
+              <span className="fw-bold" style={{ fontSize: '1.5rem' }}>{jobData[0]}</span>
+              <p className="text-secondary leading-relaxed mt-3 text-wrap text-break w-75" style={{ fontSize: '1.2rem' }}>
+                {jobData[2]}
               </p>
-            </div>
-          </div>
 
-          <div className="d-flex align-items-start mt-5 flex-column" style={{ width: '75%' }}>
-            <span className="fw-bold" style={{ fontSize: '1.4rem' }}>필요 기술 </span>
+                <div className="d-flex justify-content-between align-items-end w-100 mt-5">
+                  <div className="d-flex flex-column w-25 mt-5">
+                         <span className="text-dark fw-bold">
+                              평균 연봉
+                          </span>
+                          <span className="text-dark fw-bold leading-relaxed"  style={{fontSize: '1.3rem'}}>
+                            {jobData[3]}
+                         </span>
+                   </div>
 
-            <div className="d-flex justify-content-between w-100 mt-3">
-              <div className="border border-0 shadow-sm rounded w-50 p-3 ">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                  <path
-                    d="M69.12,94.15,28.5,128l40.62,33.85a8,8,0,1,1-10.24,12.29l-48-40a8,8,0,0,1,0-12.29l48-40a8,8,0,0,1,10.24,12.3Zm176,27.7-48-40a8,8,0,1,0-10.24,12.3L227.5,128l-40.62,33.85a8,8,0,1,0,10.24,12.29l48-40a8,8,0,0,0,0-12.29ZM162.73,32.48a8,8,0,0,0-10.25,4.79l-64,176a8,8,0,0,0,4.79,10.26A8.14,8.14,0,0,0,96,224a8,8,0,0,0,7.52-5.27l64-176A8,8,0,0,0,162.73,32.48Z"
-                  ></path>
-                </svg>
-                <span className="mx-3 text-base font-bold leading-tight"> {jobData[2]}</span>
-              </div>
+                   <div className="d-flex flex-column w-25  mx-5">
+                         <span className="text-dark fw-bold">
+                              필요 역량
+                          </span>
+                          <span className="text-secondary fw-bold leading-relaxed">
+                            {jobData[4]}
+                         </span>
+                   </div>
 
-              <div className="border border-0 shadow-sm rounded w-50 p-3 mx-3 me-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                  <path
-                    d="M69.12,94.15,28.5,128l40.62,33.85a8,8,0,1,1-10.24,12.29l-48-40a8,8,0,0,1,0-12.29l48-40a8,8,0,0,1,10.24,12.3Zm176,27.7-48-40a8,8,0,1,0-10.24,12.3L227.5,128l-40.62,33.85a8,8,0,1,0,10.24,12.29l48-40a8,8,0,0,0,0-12.29ZM162.73,32.48a8,8,0,0,0-10.25,4.79l-64,176a8,8,0,0,0,4.79,10.26A8.14,8.14,0,0,0,96,224a8,8,0,0,0,7.52-5.27l64-176A8,8,0,0,0,162.73,32.48Z"
-                  ></path>
-                </svg>
-                <span className="mx-3 text-base font-bold leading-tight">{jobData[3]}</span>
-              </div>
+                   <div className="d-flex flex-column w-25 ">
+                         <span className="text-dark fw-bold">
+                              연령대
+                          </span>
+                          <span className="text-secondary fw-bold leading-relaxed">
+                            {jobData[5]}
+                         </span>
+                   </div>
 
-              <div className="border border-0 shadow-sm rounded w-50 p-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                  <path
-                    d="M69.12,94.15,28.5,128l40.62,33.85a8,8,0,1,1-10.24,12.29l-48-40a8,8,0,0,1,0-12.29l48-40a8,8,0,0,1,10.24,12.3Zm176,27.7-48-40a8,8,0,1,0-10.24,12.3L227.5,128l-40.62,33.85a8,8,0,1,0,10.24,12.29l48-40a8,8,0,0,0,0-12.29ZM162.73,32.48a8,8,0,0,0-10.25,4.79l-64,176a8,8,0,0,0,4.79,10.26A8.14,8.14,0,0,0,96,224a8,8,0,0,0,7.52-5.27l64-176A8,8,0,0,0,162.73,32.48Z"
-                  ></path>
-                </svg>
-                <span className="mx-3 text-base font-bold leading-tight"> {jobData[4]}</span>
-              </div>
-            </div>
+                   <div className="d-flex w-25 flex-column mx-5">
+                         <span className="text-dark fw-bold">
+                              직업 전망
+                          </span>
+                         <span
+                           className={`leading-relaxed fw-bold ${
+                             jobData[6] === '밝음'
+                               ? 'text-success'
+                               : jobData[6] === '보통'
+                               ? 'text-secondary'
+                               : 'text-danger'
+                           }`}
+                         >
+                           {jobData[6]}
+                         </span>
 
-            <div className="d-flex align-items-start mt-5 flex-column w-100">
-              <span className="fw-bold" style={{ fontSize: '1.4rem' }}>비슷한 직업</span>
-              <section className="mt-3">
-                <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-
-                  {/* Card 1 */}
-                  <div className="col">
-                    <div className="card h-100 shadow border border-0">
-                      <div className="d-flex flex-column flex-md-row align-items-center p-3">
-                        <img
-                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVPe_r8Kt6jPJ7Sm9YoYqL3GBBlbBoDFJuj5ecni_29E3jDCGIvezQHs6sjCWfPV8EJTaeiLA0pNxr7pYz_GSrl3ZAQjYk5AflQBZuRYP0dflKITc3sOus9cbzGxoR0Fkn97Wbv2rTRldZS4ZMeGSUQt6wrSo237MMaVjm9EWcjYbSqvWQTdbJkszABlI5CPetNFkokBRkRQyXhaq0MVoWbSg1h86D1fdtUOkEAVe3icCL7szJ3aO1MpDp2wXhoT7HxLzBtXeK8-Y"
-                          alt="Software Engineer"
-                          className="rounded mb-3 mb-md-0"
-                          style={{ width: '144px', height: '144px', objectFit: 'cover' }}
-                        />
-                        <div className="text-center text-md-start ms-md-3">
-                          <span className="badge bg-primary mb-2">Software</span>
-                          <h5 className="card-title"> {jobData[5]}</h5>
-                          <p className="card-text text-muted">
-                            {jobData[6]}
-                          </p>
-                          <button className="btn btn-primary btn-sm">
-                            자세히 보기
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Card 2 */}
-                  <div className="col">
-                    <div className="card h-100 shadow border border-0">
-                      <div className="d-flex flex-column flex-md-row align-items-center p-3">
-                        <img
-                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuD42s7ezjtz8uQZ1zod6Zj2Ki3uPqiiDTE8pLUGowa3pBrgTJcTG-Rt_WyfleFQtb3lEF7P27Ii7pMunD8nGpRwjC6Lktdz-j7RKWJLTfn2Yruz8yLyATaYkt6QEc3gzvOEnmrvjzKn0Ey9Jf4qUQxRwZKqSi3mIbIv91m6g-S-56PsSgwPy9rrl9xKZHHLQZLSwkCsyXSSPksixRQx7kSCvvdrz-7k0fQUP-8WxPlIaqNL_NGZ6SvVXhnYvKuQlgGSwf0THk9smKgWCHsOMn4XzN68YhIgs1I7ZxA2iQ6RMFovvyyE-xq4C"
-                          alt="Data Scientist"
-                          className="rounded mb-3 mb-md-0"
-                          style={{ width: '144px', height: '144px', objectFit: 'cover' }}
-                        />
-                        <div className="text-center text-md-start ms-md-3">
-                          <span className="badge bg-success mb-2">Data</span>
-                          <h5 className="card-title">{jobData[7]}</h5>
-                          <p className="card-text text-muted">
-                            {jobData[8]}
-                          </p>
-                          <button className="btn btn-success btn-sm">
-                            자세히 보기
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Card 3 */}
-                  <div className="col">
-                    <div className="card h-100 shadow border border-0">
-                      <div className="d-flex flex-column flex-md-row align-items-center p-3">
-                        <img
-                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoHf1NkBrOEFd-UdOHWxyE0A5fLBw0tRZfgbE6nvHRXKHwxtcLBlANf5CJEX1njLCXo_yv3JKrQHg7-1a-7tX1q6Uj5X35MCaE4W-EPeQipPS9nQ_YEl1rkkQ8Bo6rv17Z9EfV57heGlrL07Ep0W-YAlAHTkMkLZYvgpQlNnHbFhe7Rh9OC2wbdlq3e7WOsR25DXty_YRmBOaO1vJfR1WDX-DrZRoQvRy-lWQJYhD6vQQid84xbI77wP_KPtVrsxS8Ej9"
-                          alt="Frontend Developer"
-                          className="rounded mb-3 mb-md-0"
-                          style={{ width: '144px', height: '144px', objectFit: 'cover' }}
-                        />
-                        <div className="text-center text-md-start ms-md-3">
-                          <span className="badge bg-warning text-dark mb-2">Frontend</span>
-                          <h5 className="card-title">{jobData[9]}</h5>
-                          <p className="card-text text-muted">
-                            {jobData[10]}
-                          </p>
-                          <button className="btn btn-warning btn-sm">
-                            자세히 보기
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
+                   </div>
                 </div>
-              </section>
+
             </div>
           </div>
+
+          <div className="row g-4 w-75 mt-2">
+
+            <div className="col-12 col-md-6 col-lg-4">
+              <div className="bg-white p-4 rounded shadow-sm hover-shadow-lg transition-shadow">
+                <div className="d-flex align-items-center mb-3">
+                  <i className="bi bi-mortarboard-fill text-primary fs-4 me-3"></i>
+                  <h3 className="h5 fw-bold text-dark mb-0">학과 (우대)</h3>
+                </div>
+                <div className="d-grid gap-2">
+                     {jobData[8].split(',').map((part, index) => (
+                          <div key={index} className="bg-light border border-1 shadow-sm p-3 rounded text-dark fw-semibold">{part}</div>
+                     ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="col-12 col-md-6 col-lg-4">
+              <div className="bg-white p-4 rounded shadow-sm hover-shadow-lg transition-shadow">
+                <div className="d-flex align-items-center mb-3">
+                  <i className="bi bi-card-checklist text-primary fs-4 me-3"></i>
+                  <h3 className="h5 fw-bold text-dark mb-0">자격증 (우대)</h3>
+                </div>
+                <div className="d-grid gap-2">
+                {jobData[9].split(',').map((part, index) => (
+                      <div key={index} className="bg-light border border-1 shadow-sm p-3 rounded text-dark fw-semibold">{part}</div>
+                 ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="col-12 col-lg-4">
+              <div className="bg-white p-4 rounded shadow-sm hover-shadow-lg transition-shadow h-100">
+                <div className="d-flex align-items-center mb-3">
+                  <i className="bi bi-tools text-primary fs-4 me-3"></i>
+                  <h3 className="h5 fw-bold text-dark mb-0">필요 기술</h3>
+                </div>
+                <div className="d-grid gap-2">
+                  <div className="bg-light border border-1 shadow-sm p-3 rounded text-dark fw-semibold">{jobData[10]}</div>
+                  <div className="bg-light border border-1 shadow-sm p-3 rounded text-dark fw-semibold">{jobData[11]}</div>
+                  <div className="bg-light border border-1 shadow-sm p-3 rounded text-dark fw-semibold">{jobData[12]}</div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+                  <section className="w-100 mt-5 mb-2">
+                    <div className="bg-primary text-white rounded p-5 text-center">
+                      <h3 className="display-6 fw-bold">직업 검사</h3>
+                      <p className="lead mx-auto" style={{ maxWidth: '600px' }}>
+                       혹시 다른 가능성도 궁금하신가요?<br/> 퀴즈를 다시 풀면, 여러분의 성향과 관심사에 맞는 또 다른 커리어 경로를 제안해 드립니다.
+                      </p>
+                      <button className="fs-6 text-primary fw-bold btn btn-light btn-lg mt-3">
+                        다시 검사하기
+                      </button>
+
+                    </div>
+                  </section>
+             </div>
+
+          </div>
+
+
         </>
       )}
     </div>

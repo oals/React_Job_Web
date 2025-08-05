@@ -17,8 +17,8 @@ export function login(loginData) {
   });
 }
 
-export function searchJobList(findText) {
-  return apiClient(`${API_URL}/job/search/list?findText=${findText}`, {
+export function searchJobList(findText,page,size,memberId) {
+  return apiClient(`${API_URL}/job/search/list?findText=${findText}&page=${page}&size=${size}&memberId=${memberId}`, {
     method: 'GET',
     credentials: "include",
   });
@@ -31,7 +31,7 @@ export function searchJobInfo(jobCd) {
   });
 }
 
-export function insertJobQuestion(result, memberEmail) {
+export function insertJobQuestion(result, memberEmail,testType) {
   return apiClient(`${API_URL}/test/insert/question`, {
     method: 'POST',
     credentials: "include",
@@ -39,10 +39,41 @@ export function insertJobQuestion(result, memberEmail) {
          'Content-Type': 'application/json',
      },
      body: {
-           memberEmail : memberEmail,
+           memberEmail: memberEmail,
            jobTestResult: result,
+           testType: testType,
      },
   });
 }
+
+export function searchNews() {
+  return apiClient(`${API_URL}/news/search`, {
+    method: 'GET',
+    credentials: "include",
+  });
+}
+
+export function searchPopularJob() {
+  return apiClient(`${API_URL}/job/search/popular`, {
+    method: 'GET',
+    credentials: "include",
+  });
+}
+
+export function saveBookmarks(memberId, jobCd, isBookmark) {
+
+  return apiClient(`${API_URL}/job/bookmark/insert`, {
+    method: 'POST',
+    credentials: "include",
+    body : {
+        memberId: memberId,
+        jobCd: jobCd,
+        bookmark: isBookmark
+    }
+  });
+}
+
+
+
 
 

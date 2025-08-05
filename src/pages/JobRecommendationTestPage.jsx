@@ -48,7 +48,12 @@ const JobRecommendationTestPage = () => {
         score: responses[i]
       }));
 
-      navigate('/jobrecommendationresult', { state: { result } });
+    navigate('/jobrecommendationresult', {
+        state: {
+          result,
+          testType: testId
+        }
+      });
     };
 
 
@@ -56,7 +61,11 @@ const JobRecommendationTestPage = () => {
     <div className="d-flex flex-column">
       <div className="flex-grow-1 d-flex justify-content-center align-items-center py-5 flex-column">
           <div>
-              <h3>직업 심리 검사</h3>
+              <h3>
+                  {testId === "1" && '직업 가치관 검사'}
+                  {testId === "2" && '직업 흥미 검사'}
+                  {testId === "3" && '진로 심리 검사'}
+                </h3>
           </div>
 
         <div className="card mt-5" style={{ width: '768px' }}>

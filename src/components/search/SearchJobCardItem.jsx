@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { saveBookmarks } from '../../utils/api';
 
 const SearchJobCardItem = ({jobItem}) => {
 
     const parts = jobItem.certNm.split(/[\/,]/);
     const uniqueParts = [...new Set(parts)];
+    const [isBookmarked, setIsBookmarked] = useState(jobItem.bookmark);
 
     return (
-         <div className="card shadow-sm p-3 pt-2 pb-2">
+         <div className="card shadow-sm p-3 pt-2 pb-2 mt-2">
            <div className="card-body">
              <div className="d-flex justify-content-between">
                <div className="d-flex flex-column">
@@ -17,7 +19,20 @@ const SearchJobCardItem = ({jobItem}) => {
                    </Link>
                  <small className="text-muted text-start">{jobItem.jobLrclNm}</small>
                </div>
-                <i className="bi bi-bookmark fs-4 text-secondary"></i>
+               <i
+                 className={`bi ${isBookmarked ? 'bi-bookmark-fill' : 'bi-bookmark'} fs-4 text-warning`}
+                 onClick={() => {
+                   const memberId = localStorage.getItem('memberId');
+                   if (!memberId) {
+                     alert("로그인이 필요합니다.");
+                     return;
+                   }
+                   setIsBookmarked(prev => !prev);
+                   saveBookmarks(memberId, jobItem.jobCd, isBookmarked);
+                 }}
+               />
+
+
              </div>
              <p className="mt-3 text-muted text-start">
                {jobItem.jobSum}

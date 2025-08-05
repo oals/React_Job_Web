@@ -12,6 +12,13 @@ const JobInfoPage = () => {
     const [uniqueCertParts, setUniqueCertParts] = useState([]);
     const [uniqueMajorParts, setUniqueMajorParts] = useState([]);
     const [uniqueJobActvImprtncsParts, setUniqueJobActvImprtncsParts] = useState([]);
+    const [uniqueJobSalParts, setUniqueJobSalParts] = useState([]);
+    const [uniqueJobAbilParts, setUniqueJobAbilParts] = useState([]);
+    const [uniqueJobKnowldgParts, setUniqueJobKnowldgParts] = useState([]);
+    const [uniqueJobEnvParts, setUniqueJobEnvParts] = useState([]);
+    const [uniqueJobChrParts, setUniqueJobChrParts] = useState([]);
+    const [uniqueJobIntrstParts, setUniqueJobIntrstParts] = useState([]);
+    const [uniqueJobValsParts, setUniqueJobValsParts] = useState([]);
 
     useEffect(() => {
         const searchData = async () => {
@@ -46,6 +53,35 @@ const JobInfoPage = () => {
         const unique3 = [...new Set(parts3)];
         setUniqueJobActvImprtncsParts(unique3);
 
+        const unique4 = [...jobInfo.sal.matchAll(/(\d+)(?=만원)/g)].map(match => Number(match[1]));
+        setUniqueJobSalParts(unique4)
+
+        const parts5 = jobInfo.jobAbil.split(/[/]/).map(s => s.trim());
+        const unique5 = [...new Set(parts5)];
+        setUniqueJobAbilParts(unique5)
+
+        const parts6 = jobInfo.knowldg.split(/[/]/).map(s => s.trim());
+        const unique6 = [...new Set(parts6)];
+        setUniqueJobKnowldgParts(unique6)
+
+        const parts7 = jobInfo.jobEnv.split(/[/]/).map(s => s.trim());
+        const unique7 = [...new Set(parts7)];
+        setUniqueJobEnvParts(unique7)
+
+        const parts8 = jobInfo.jobChr.split(/[/]/).map(s => s.trim());
+        const unique8 = [...new Set(parts8)];
+        setUniqueJobChrParts(unique8)
+
+        const parts9 = jobInfo.jobIntrst.split(/[/]/).map(s => s.trim());
+        const unique9 = [...new Set(parts9)];
+        setUniqueJobIntrstParts(unique9)
+
+        const parts10 = jobInfo.jobVals.split(/[/]/).map(s => s.trim());
+        const unique10 = [...new Set(parts10)];
+        setUniqueJobValsParts(unique10)
+
+
+
       }
     }, [jobInfo]);
 
@@ -54,150 +90,250 @@ const JobInfoPage = () => {
         return <div>Loading...</div>;
 
     return (
-       <div className="w-75 mx-auto">
+       <div className="w-100 mx-auto">
 
-        <div className="position-relative mb-5 w-100">
-          <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVPe_r8Kt6jPJ7Sm9YoYqL3GBBlbBoDFJuj5ecni_29E3jDCGIvezQHs6sjCWfPV8EJTaeiLA0pNxr7pYz_GSrl3ZAQjYk5AflQBZuRYP0dflKITc3sOus9cbzGxoR0Fkn97Wbv2rTRldZS4ZMeGSUQt6wrSo237MMaVjm9EWcjYbSqvWQTdbJkszABlI5CPetNFkokBRkRQyXhaq0MVoWbSg1h86D1fdtUOkEAVe3icCL7szJ3aO1MpDp2wXhoT7HxLzBtXeK8-Y"
-            alt="소프트웨어 엔지니어"
-            className="img-fluid rounded"
-            style={{ objectFit: 'cover' }}
-          />
+      <div className=" rounded-4 shadow-lg overflow-hidden">
 
-          <div
-            className="position-absolute bottom-0 start-0 w-100"
-            style={{
-              height: '60px',
-              background: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent)'
-            }}
-          ></div>
-         <h5
-            className="position-absolute bottom-0 start-50 translate-middle-x text-primary fw-bold mb-5 pb-1"
-            style={{ zIndex: 2 }}
-          >
-            {jobInfo.jobLrclNm}
-          </h5>
-        <h1
-          className="position-absolute bottom-0 start-50 translate-middle-x text-white fw-bold fs-2 mb-3"
-          style={{ zIndex: 2 }}
-        >
-          {jobInfo.jobMdclNm}
-        </h1>
+            <div className="bg-light position-relative" style={{ height: '12rem' }}>
+              <div
+                className="position-absolute top-0 start-0 w-100 h-100"
+                style={{
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.05), transparent)',
+                  zIndex: 1,
+                }}
+              ></div>
+              <div
+                className="position-absolute  start-50 translate-middle-x"
+                style={{ bottom: '1px' }}
+              >
+                <div className="d-flex flex-column pb-4 px-4 text-center mt-5 w-100">
+                    <p className="text-primary fw-semibold">{jobInfo.jobLrclNm}</p>
+                    <h1 className="display-5 fw-bold text-dark">{jobInfo.jobMdclNm}</h1>
+                    <p className="text-muted mt-3 fw-bold">
+                    {jobInfo.jobSum}
+                    </p>
+                  </div>
+              </div>
+            </div>
 
-        </div>
-            <div className="w-75 mx-auto">
-                   <p className="fs-6 text-secondary mb-5">
+
+
+            <div className="border-top border-secondary-subtle px-4 py-5">
+              <div className="w-75 d-flex align-items-end flex-column text-start">
+
+                <div className="mb-5 w-75 ">
+                  <h2 className="h4 fw-bold text-dark mb-3">
+                    <i className="bi bi-mortarboard-fill text-primary me-2"></i>되는 길
+                  </h2>
+                  <p className="text-muted text-secondary">
                      {jobInfo.way}
-                   </p>
-            </div>
+                  </p>
 
-               <div className="w-50 mx-auto bg-white">
-                    <div className="text-center">
-                      <h2 className="fw-bold fs-2 text-dark">자격 요건</h2>
-                    </div>
-
-                    <div className="row gy-4 mx-auto justify-content-center">
+                </div>
 
 
-                      <div className="col-md-6">
-                        <div className="card border-0 h-100 shadow-sm p-4 rounded-4">
-                          <div className="d-flex align-items-center mb-4">
-                            <i className="bi bi-mortarboard text-primary fs-2 me-3"></i>
-                            <h3 className="fs-4 fw-bold mb-0 text-dark">학과 (우대)</h3>
+                <div className="row mb-5 text-start" style={{width: '76%'}}>
+                  <div className="col-md-6 mb-4">
+                    <h3 className="h5 fw-bold text-dark mb-3">
+                      <i className="bi bi-mortarboard-fill  text-success me-2"></i>관련 학과
+                    </h3>
+                    <ul className="list-unstyled text-muted fw-bold">
+                        {uniqueMajorParts.map((part, index) => (
+                            <li key={index}><i className="bi bi-check2-circle me-2 text-success"></i>{part}</li>
+                        ))}
+                    </ul>
+                  </div>
+                  <div className="col-md-6">
+                    <h3 className="h5 fw-bold text-dark mb-3">
+                      <i className="bi bi-file-earmark-check-fill text-success me-2"></i>관련 자격증
+                    </h3>
+                    <ul className="list-unstyled text-muted fw-bold">
+                    {uniqueMajorParts.map((part, index) => (
+                         <li key={index}><i className="bi bi-check2-circle me-2 text-success"></i>{part}</li>
+                     ))}
+                    </ul>
+                  </div>
+                </div>
+
+
+                <div className="text-center w-75 mb-5 ">
+                  <h2 className="h4 fw-bold text-dark mb-3">평균 연봉</h2>
+                  <p className="text-muted">경력과 기술 스택에 따라 연봉은 달라질 수 있습니다.</p>
+                  <div className="row justify-content-center">
+                     {uniqueJobSalParts.map((part, index) => (
+                       <div className="col-sm-4 mb-3" key={index}>
+                         <div
+                           className={
+                             index === 1
+                               ? "border border-1 p-4 rounded-3 bg-primary"
+                               : "bg-light border border-1 p-4 rounded-3"
+                           }
+                         >
+                           <span
+                             className={
+                               index === 1
+                                 ? "small text-light"
+                                 : "small text-muted"
+                             }
+                           >
+                             {index === 0
+                               ? "하위(25%)"
+                               : index === 1
+                               ? "평균(50%)"
+                               : index === 2
+                               ? "상위(25%)"
+                               : ""}
+                           </span>
+
+                           <h3 className={index === 1 ? "fw-bold text-light" : "fw-bold"}>
+                             ₩ {part}만원
+                           </h3>
+                         </div>
+                       </div>
+                     ))}
+
+
+
+                  </div>
+                </div>
+
+
+                <div className="text-center w-75 mb-5">
+                  <h2 className="h4 fw-bold text-dark mb-4">일자리 전망</h2>
+                  <div className="row">
+
+
+                    {uniqueJobActvImprtncsParts.map((part, index) => (
+                     <div className="col-sm-4 mb-3" key={index}>
+                         <div className={`border p-4 rounded-3 ${
+                                  index === 0
+                                    ? 'text-primary'
+                                    : index === 1
+                                    ? 'text-secondary'
+                                    : index === 2
+                                    ? 'text-danger'
+                                    : ''
+                                }`}
+                         style={{
+                             backgroundColor:
+                               index === 0
+                                 ? '#e0f2ff'
+                                 : index === 1
+                                 ? '#f0f0f0'
+                                 : index === 2
+                                 ? '#ffe4e1'
+                                 : '#ffffff'
+                           }}>
+                           <p className="fw-semibold">{part.split('(')[0]}</p>
+                           <h3 className="fw-bold">{part.split('(')[1].replace(')','')}</h3>
+                         </div>
+                      </div>
+                    ))}
+
+                  </div>
+                   <div className="container my-5 mt-5">
+
+                        <div className="row g-4">
+
+                          <div className="col-12 col-md-6 col-lg-4">
+                            <div className="bg-light p-4 rounded">
+                              <h4 className="fw-bold text-dark mb-4">필요 능력</h4>
+                              <ul className="list-unstyled small text-muted">
+
+                                 {uniqueJobAbilParts.map((part, index) => (
+                                   <li className="d-flex justify-content-between mb-2" key={index}>
+                                     <span>{part.match(/^(.+?)\(/)?.[1] || part}</span>
+                                     <span className="fw-bold">{part.match(/\((\d+)\)/)?.[1] || ''}</span>
+                                   </li>
+                                 ))}
+
+                              </ul>
+                            </div>
                           </div>
-                       <ul>
-                          {uniqueMajorParts.map((part, index) => (
-                            <li key={index} className="d-flex align-items-start mb-3">
-                              <i className="bi bi-check-circle-fill text-success me-3"></i>
-                              <p className="fw-semibold mb-0">{part}</p>
-                            </li>
-                          ))}
-                        </ul>
+
+
+                          <div className="col-12 col-md-6 col-lg-4">
+                            <div className="bg-light p-4 rounded">
+                              <h4 className="fw-bold text-dark mb-4">필요 지식</h4>
+                              <ul className="list-unstyled small text-muted">
+                                   {uniqueJobKnowldgParts.map((part, index) => (
+                                     <li className="d-flex justify-content-between mb-2" key={index}>
+                                       <span>{part.match(/^(.+?)\(/)?.[1] || part}</span>
+                                       <span className="fw-bold">{part.match(/\((\d+)\)/)?.[1] || ''}</span>
+                                     </li>
+                                   ))}
+                              </ul>
+                            </div>
+                          </div>
+
+
+                          <div className="col-12 col-md-6 col-lg-4">
+                            <div className="bg-light p-4 rounded">
+                              <h4 className="fw-bold text-dark mb-4">업무 환경</h4>
+                              <ul className="list-unstyled small text-muted">
+                               {uniqueJobEnvParts.map((part, index) => (
+                                  <li className="d-flex justify-content-between mb-2" key={index}>
+                                    <span>{part.match(/^(.+?)\(/)?.[1] || part}</span>
+                                    <span className="fw-bold">{part.match(/\((\d+)\)/)?.[1] || ''}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+
+                          <div className="col-12 col-md-6 col-lg-4">
+                            <div className="bg-light p-4 rounded">
+                              <h4 className="fw-bold text-dark mb-4">성격</h4>
+                              <ul className="list-unstyled small text-muted">
+                              {uniqueJobChrParts.map((part, index) => (
+                                 <li className="d-flex justify-content-between mb-2" key={index}>
+                                   <span>{part.match(/^(.+?)\(/)?.[1] || part}</span>
+                                   <span className="fw-bold">{part.match(/\((\d+)\)/)?.[1] || ''}</span>
+                                 </li>
+                               ))}
+                              </ul>
+                            </div>
+                          </div>
+
+
+
+
+                          <div className="col-12 col-md-6 col-lg-4">
+                            <div className="bg-light p-4 rounded">
+                              <h4 className="fw-bold text-dark mb-4">흥미</h4>
+                              <ul className="list-unstyled small text-muted">
+                               {uniqueJobIntrstParts.map((part, index) => (
+                                 <li className="d-flex justify-content-between mb-2" key={index}>
+                                   <span>{part.match(/^(.+?)\(/)?.[1] || part}</span>
+                                   <span className="fw-bold">{part.match(/\((\d+)\)/)?.[1] || ''}</span>
+                                 </li>
+                               ))}
+                              </ul>
+                            </div>
+                          </div>
+
+
+
+                          <div className="col-12 col-md-6 col-lg-4">
+                            <div className="bg-light p-4 rounded">
+                              <h4 className="fw-bold text-dark mb-4">가치관</h4>
+                              <ul className="list-unstyled small text-muted">
+                               {uniqueJobValsParts.map((part, index) => (
+                                 <li className="d-flex justify-content-between mb-2" key={index}>
+                                   <span>{part.match(/^(.+?)\(/)?.[1] || part}</span>
+                                   <span className="fw-bold">{part.match(/\((\d+)\)/)?.[1] || ''}</span>
+                                 </li>
+                               ))}
+                              </ul>
+                            </div>
+                          </div>
                         </div>
                       </div>
-
-                      {/* 자격증 (우대) */}
-                      <div className="col-md-6">
-                        <div className="card border-0 h-100 shadow-sm p-4 rounded-4">
-                          <div className="d-flex align-items-center mb-4">
-                            <i className="bi bi-award-fill text-success fs-2 me-3"></i>
-                            <h3 className="fs-4 fw-bold mb-0 text-dark">자격증 (우대)</h3>
-                          </div>
-                         <ul>
-                           {uniqueCertParts.map((part, index) => (
-                             <li key={index} className="d-flex align-items-start mb-3">
-                               <i className="bi bi-check-circle-fill text-success me-3"></i>
-                               <p className="fw-semibold mb-0">{part}</p>
-                             </li>
-                           ))}
-                         </ul>
-
-                        </div>
-                      </div>
-
-                    </div>
                   </div>
 
-
-
-            <div className="container bg-white py-5">
-              <div className="text-center mb-5">
-                <h2 className="fw-bold fs-2 text-dark">평균 연봉</h2>
-                <p className="fs-5 text-muted">경력과 기술 스택에 따라 연봉은 달라질 수 있습니다.</p>
-              </div>
-
-              <div className="row justify-content-center gy-4">
-
-                {/* 신입 */}
-                <div className="col-md-4 shadow">
-                  <div className="card bg-light h-100 text-center p-4 border-0 rounded-4 shadow-sm">
-                    <h3 className="fs-4 fw-bold text-dark mb-2">{jobInfo.sal.replaceAll(',', '').split(' ')[2]}</h3>
-                    <p className="fs-2 fw-bold text-primary mb-0">₩ {jobInfo.sal.replaceAll(',', '').split(' ')[3]}만</p>
-                    <p className="text-muted mt-2">이상</p>
                   </div>
-                </div>
-
-                {/* 중급 */}
-                <div className="col-md-4 shadow">
-                  <div className="card bg-primary h-100 text-center text-white p-4 border-0 rounded-4 shadow">
-                    <h3 className="fs-4 fw-bold mb-2">{jobInfo.sal.replaceAll(',', '').split(' ')[4]}</h3>
-                    <p className="fs-2 fw-bold mb-0">₩ {jobInfo.sal.replaceAll(',', '').split(' ')[5]}</p>
-                    <p className="text-light mt-2">이상</p>
                   </div>
-                </div>
-
-                {/* 고급 */}
-                <div className="col-md-4 shadow">
-                  <div className="card bg-light h-100 text-center p-4 border-0 rounded-4 shadow-sm">
-                    <h3 className="fs-4 fw-bold text-dark mb-2">{jobInfo.sal.replaceAll(',', '').split(' ')[6]}</h3>
-                    <p className="fs-2 fw-bold text-primary mb-0">₩ {jobInfo.sal.replaceAll(',', '').split(' ')[7]}</p>
-                    <p className="text-muted mt-2">이상</p>
                   </div>
-                </div>
-
-              </div>
-            </div>
-
-           <div className="d-flex mt-5 flex-column w-100 pt-0 p-5">
-            <h2 className="fw-bold fs-2 text-dark">일자리 전망</h2>
-            <section className="mt-4 w-100">
-              <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 ">
-
-                {uniqueJobActvImprtncsParts.map((part, index) => (
-                  <div
-                    className={`col-md-3 shadow p-5 h-100 border-0 rounded-4 shadow card ${
-                      index === 0 ? 'bg-primary text-light' : 'bg-light text-dark'
-                    }`}
-                    key={index}
-                  >
-                    <h3 className="fs-4 fw-bold p-4">{part}</h3>
-                  </div>
-                ))}
-
-              </div>
-            </section>
-            </div>
-
 
 
 
