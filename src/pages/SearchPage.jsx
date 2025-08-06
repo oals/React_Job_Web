@@ -14,14 +14,20 @@ const SearchPage = () => {
    const [totalCount, setTotalCount] = useState(0);
    const [currentPage , setCurrentPage] = useState(1);
    const [size , setSize] = useState(5);
+   const [searchKey, setSearchKey] = useState(0);
+   const [searchType, setSearchType] = useState(1);
 
+    useEffect(() => {
+      setSearchKey(prev => prev + 1);
+      setCurrentPage(1);
+    }, [findText]);
 
     useEffect(() => {
       const searchData = async () => {
         try {
 
           const memberId = localStorage.getItem('memberId');
-          const response = await searchJobList(findText,currentPage,size,memberId);
+          const response = await searchJobList(findText,currentPage,size,memberId,searchType);
           const data = await response.json();
           setJobList(data['jobList']);
           setTotalCount(data['totalCount'])
@@ -30,22 +36,34 @@ const SearchPage = () => {
           console.error('검색 중 오류:', error);
         }
       };
-
-      if (findText) {
+     if (findText != null && currentPage != null) {
         searchData();
       }
-    }, [findText,currentPage, size]);
-
+    }, [searchKey,currentPage, size, searchType]);
 
     return (
         <div className="w-100 d-flex flex-column justify-content-center align-items-center ">
 
-               <div className="mb-4 text-center ">
-                 <h1 className="h3 fw-bold mb-2">‘{findText}’ 검색 결과</h1>
-                 <p className="text-muted">총 {jobList.length}건의 직업정보가 있습니다.</p>
-               </div>
+        <section className="mb-12 text-center w-75 mx-auto bg-primary p-5 mb-2 rounded">
+                  <div className="mb-2 text-center ">
+                    <h1 className="h3 fw-bold mb-1 text-light">
+                      {findText
+                        ? `‘${findText}’ 검색 결과`
+                        : '검색어를 입력해주세요'}
+                    </h1>
 
-               <SearchBar />
+                  </div>
+                <div className="d-flex flex-column mb-4">
+                     <span className="fw-semibold mb-1" style={{ color: '#EAEAEA', fontSize: '0.9rem'  }}>
+                       총 <span className="fw-bold" style={{ color: '#ffffff', fontSize: '1.0rem' }}>{totalCount}</span> 건의 직업정보가 있습니다.
+                     </span>
+
+                </div>
+
+                 <SearchBar
+                   isJobSearch={true}
+                 />
+               </section>
 
                <div className="row mt-5 w-50">
 
@@ -54,8 +72,29 @@ const SearchPage = () => {
                    <div className="d-flex justify-content-between align-items-center mb-3">
                      <div className="text-muted small">
                        <span className="fw-semibold">정렬:</span>{' '}
-                       <a href="#" className="text-primary fw-semibold me-2">관련도순</a>|
-                       <a href="#" className="ms-2 text-secondary">인기순</a>
+                     <a
+                       href="#"
+                       className={`fw-semibold me-2 ${searchType === 1 ? 'text-primary' : 'text-secondary'}`}
+                       onClick={(e) => {
+                         e.preventDefault();
+                         setSearchType(1);
+                       }}
+                     >
+                       관련도순
+                     </a>
+                     |
+                     <a
+                       href="#"
+                       className={`fw-semibold ms-2 ${searchType === 2 ? 'text-primary' : 'text-secondary'}`}
+                       onClick={(e) => {
+                         e.preventDefault();
+                         setSearchType(2);
+                       }}
+                     >
+                       인기순
+                     </a>
+
+
                      </div>
                     <select
                       className="form-select form-select-sm w-auto"

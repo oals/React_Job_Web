@@ -25,9 +25,12 @@ const NavigationBar = ({ isLogin, setIsLogin }) => {
                   <Link to="/" className="me-4 link-offset-2 link-underline text-secondary link-underline-opacity-0">
                      홈
                   </Link>
-                  <Link to="/" className="me-4 link-offset-2 link-underline text-secondary link-underline-opacity-0">
-                     커뮤니티
+                  <Link to="/search?text=" className="me-4 link-offset-2 link-underline text-secondary link-underline-opacity-0">
+                     직업 정보
                   </Link>
+                     <Link to="/news?text=" className="me-4 link-offset-2 link-underline text-secondary link-underline-opacity-0">
+                        직업 뉴스
+                     </Link>
               </div>
          </div>
          <div>

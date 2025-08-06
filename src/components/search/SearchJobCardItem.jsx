@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { saveBookmarks } from '../../utils/api';
@@ -8,6 +8,10 @@ const SearchJobCardItem = ({jobItem}) => {
     const parts = jobItem.certNm.split(/[\/,]/);
     const uniqueParts = [...new Set(parts)];
     const [isBookmarked, setIsBookmarked] = useState(jobItem.bookmark);
+
+    useEffect(() => {
+      setIsBookmarked(jobItem.bookmark);
+    }, [jobItem.bookmark]);
 
     return (
          <div className="card shadow-sm p-3 pt-2 pb-2 mt-2">
@@ -20,7 +24,7 @@ const SearchJobCardItem = ({jobItem}) => {
                  <small className="text-muted text-start">{jobItem.jobLrclNm}</small>
                </div>
                <i
-                 className={`bi ${isBookmarked ? 'bi-bookmark-fill' : 'bi-bookmark'} fs-4 text-warning`}
+                 className={`bi ${isBookmarked ? 'bi-bookmark-fill' : 'bi-bookmark'} fs-4 text-primary`}
                  onClick={() => {
                    const memberId = localStorage.getItem('memberId');
                    if (!memberId) {
@@ -41,7 +45,10 @@ const SearchJobCardItem = ({jobItem}) => {
                <span>평균 연봉: {jobItem.sal.replaceAll(',', '').split(' ')[5]}</span>
              </div>
               <div className="d-flex flex-wrap gap-3 text-muted small mt-1">
-                  <span>자격증: {uniqueParts.slice(0, 5)} ...</span>
+                 {uniqueParts.includes('없음') ? null : (
+                   <span>자격증: {uniqueParts.slice(0, 5).join(', ')} ...</span>
+                 )}
+
               </div>
            </div>
          </div>

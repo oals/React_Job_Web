@@ -3,7 +3,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { insertJobQuestion } from '../utils/api'
-
+import { Link } from 'react-router-dom';
 const JobRecommendationResultPage = () => {
 
   const [loading, setLoading] = useState(false);
@@ -173,17 +173,20 @@ const JobRecommendationResultPage = () => {
             </div>
 
             <div>
-                  <section className="w-100 mt-5 mb-2">
-                    <div className="bg-primary text-white rounded p-5 text-center">
-                      <h3 className="display-6 fw-bold">직업 검사</h3>
-                      <p className="lead mx-auto" style={{ maxWidth: '600px' }}>
-                       혹시 다른 가능성도 궁금하신가요?<br/> 퀴즈를 다시 풀면, 여러분의 성향과 관심사에 맞는 또 다른 커리어 경로를 제안해 드립니다.
+                  <section className="w-100 bg-primary rounded-4 p-5 text-white mt-3 mb-3  d-flex align-items-center justify-content-between">
+                    <div className="text-start">
+                      <h2 className="h3 fw-bold mb-3">내게 맞는 커리어, 아직 확신이 없다면?</h2>
+                      <p className="opacity-75" style={{ maxWidth: '600px' }}>
+                        간단한 진단을 통해 당신의 성향과 역량에 맞는 커리어 방향성을 탐색해 보세요.
                       </p>
-                      <button className="fs-6 text-primary fw-bold btn btn-light btn-lg mt-3">
-                        다시 검사하기
-                      </button>
-
                     </div>
+
+                       <Link to='/jobtestselect'>
+                            <button className="btn btn-light text-primary fw-bold px-4 py-2 rounded-pill flex-shrink-0">
+                              커리어 진단 다시하기
+                            </button>
+                          </Link>
+
                   </section>
              </div>
 

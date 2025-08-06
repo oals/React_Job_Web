@@ -90,11 +90,11 @@ const JobInfoPage = () => {
         return <div>Loading...</div>;
 
     return (
-       <div className="w-100 mx-auto">
+       <div className=" w-100 ">
 
       <div className=" rounded-4 shadow-lg overflow-hidden">
 
-            <div className="bg-light position-relative" style={{ height: '12rem' }}>
+            <div className="bg-light position-relative" style={{ height: '15rem' }}>
               <div
                 className="position-absolute top-0 start-0 w-100 h-100"
                 style={{

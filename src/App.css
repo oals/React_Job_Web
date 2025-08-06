@@ -26,11 +26,10 @@
   transition: all 0.2s ease-in-out;
 }
 
-/* 선택된 상태 */
 .btn-check:checked + .gender-label {
-  background-color: #0d6efd; /* Bootstrap primary */
+  background-color: #473cd3;
   color: white;
-  border-color: #0d6efd;
+  border-color: #473cd3;
 }
 
  .skill-pill {
@@ -83,6 +82,26 @@ table tr td {
 }
 .carousel-control-prev-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3csvg fill='grey' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath d='M11.5 1.5l-6 6 6 6' stroke='grey' stroke-width='2' fill='none'/%3e%3c/svg%3e");
+}
+
+.bg-primary {
+  background-color: #473cd3 !important;
+}
+
+.btn-primary {
+  background-color: #473cd3 !important;
+  border-color: #473cd3 !important;
+  color: #fff !important;
+}
+
+.text-primary {
+  color: #473cd3 !important;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #3c34ba !important;
+  border-color: #3c34ba !important;
+  color: #fff !important;
 }
 
 .logo {

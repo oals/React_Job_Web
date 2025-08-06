@@ -17,8 +17,8 @@ export function login(loginData) {
   });
 }
 
-export function searchJobList(findText,page,size,memberId) {
-  return apiClient(`${API_URL}/job/search/list?findText=${findText}&page=${page}&size=${size}&memberId=${memberId}`, {
+export function searchJobList(findText,page,size,memberId,searchType) {
+  return apiClient(`${API_URL}/job/search/list?findText=${findText}&page=${page}&size=${size}&memberId=${memberId}&searchType=${searchType}`, {
     method: 'GET',
     credentials: "include",
   });
@@ -46,8 +46,8 @@ export function insertJobQuestion(result, memberEmail,testType) {
   });
 }
 
-export function searchNews() {
-  return apiClient(`${API_URL}/news/search`, {
+export function searchNews(findText,page,size) {
+  return apiClient(`${API_URL}/news/search?findText=${findText}&page=${page}&size=${size}`, {
     method: 'GET',
     credentials: "include",
   });
