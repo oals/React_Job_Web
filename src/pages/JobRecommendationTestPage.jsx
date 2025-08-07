@@ -63,8 +63,8 @@ const JobRecommendationTestPage = () => {
 
     if (selectCheck()) {
       if (currentIndex + questionsPerPage < questions.length) {
-          setCurrentIndex(currentIndex + questionsPerPage);
-       }
+        setCurrentIndex(currentIndex + questionsPerPage);
+      }
     }
   };
 
@@ -72,18 +72,18 @@ const JobRecommendationTestPage = () => {
 
 
     if (selectCheck()) {
-        const result = questions.map((q, i) => ({
-          question: q.question,
-          category: q.category,
-          score: responses[i]
-        }));
+      const result = questions.map((q, i) => ({
+        question: q.question,
+        category: q.category,
+        score: responses[i]
+      }));
 
-        navigate('/jobrecommendationresult', {
-          state: {
-            result,
-            testType: testId
-          }
-        });
+      navigate('/jobrecommendationresult', {
+        state: {
+          result,
+          testType: testId
+        }
+      });
     }
 
   };
@@ -91,22 +91,20 @@ const JobRecommendationTestPage = () => {
   return (
     <div className="d-flex flex-column">
       <div className="flex-grow-1 d-flex justify-content-center align-items-center py-5 flex-column">
-        <div className="bg-primary w-50 mx-auto p-5 text-light">
+        <div className={`w-50 mx-auto p-5 text-light rounded bg-${getColor(testId)}`}>
           <h3>
             {testId === "1" && '직업 가치관 검사'}
             {testId === "2" && '직업 흥미 검사'}
             {testId === "3" && '진로 심리 검사'}
           </h3>
         </div>
-
         <div className="card mt-5" style={{ width: '768px' }}>
           <div className="card-body">
             <div className="mb-4">
-
               <div className={` mb-1 fw-bold text-${getColor(testId)}`}>
                 <div className="w-100 d-flex justify-content-between">
-                    <small>항목 {currentIndex + 1} ~ {Math.min(currentIndex + questionsPerPage, questions.length)} / {questions.length}</small>
-                    <small> 진행률: {Math.round((currentIndex / questions.length) * 100)}%</small>
+                  <small>항목 {currentIndex + 1} ~ {Math.min(currentIndex + questionsPerPage, questions.length)} / {questions.length}</small>
+                  <small> 진행률: {Math.round((currentIndex / questions.length) * 100)}%</small>
                 </div>
               </div>
               <div className="progress">
@@ -117,22 +115,19 @@ const JobRecommendationTestPage = () => {
                 />
               </div>
             </div>
-
             {currentQuestions.map((q, idx) => {
               const realIndex = currentIndex + idx;
               return (
                 <div key={realIndex} className="mb-5">
                   <h5>{q.question}</h5>
-
                   <div className="d-flex justify-content-between">
                     {[1, 2, 3, 4, 5].map((score) => (
                       <div
                         key={score}
-                        className={`form-check text-center flex-fill mx-1 border rounded p-3 ${
-                          responses[realIndex] === score
+                        className={`form-check text-center flex-fill mx-1 border rounded p-3 ${responses[realIndex] === score
                             ? `bg-outline-${getColor(testId)} text-${getColor(testId)} border-${getColor(testId)} border-2`
                             : 'bg-white text-dark'
-                        }`}
+                          }`}
                         style={{ cursor: 'pointer' }}
                         onClick={() => handleSelect(realIndex, score)}
                       >
@@ -144,10 +139,10 @@ const JobRecommendationTestPage = () => {
                           onChange={() => handleSelect(realIndex, score)}
                         />
                         <label className="form-check-label">
-                            <div className="d-flex flex-column">
-                                <span className="fw-bold" style={{fontSize: '1.3rem'}}> {score}</span>
-                                <span> {labels[score]} </span>
-                            </div>
+                          <div className="d-flex flex-column">
+                            <span className="fw-bold" style={{ fontSize: '1.3rem' }}> {score}</span>
+                            <span> {labels[score]} </span>
+                          </div>
                         </label>
                       </div>
                     ))}
@@ -155,16 +150,15 @@ const JobRecommendationTestPage = () => {
                 </div>
               );
             })}
-
             <div className="text-end">
               {currentIndex + questionsPerPage < questions.length ? (
                 <button
                   type="button"
                   className={`btn btn-${getColor(testId)}`}
-                  onClick={()=> {
-                        window.scrollTo(0, 0);
-                        goToNext()
-                      }
+                  onClick={() => {
+                    window.scrollTo(0, 0);
+                    goToNext()
+                  }
                   }
                 >
                   다음
@@ -173,7 +167,7 @@ const JobRecommendationTestPage = () => {
                 <button
                   type="button"
                   onClick={goToResult}
-                  className="btn btn-outline-secondary"
+                  className={`btn btn-${getColor(testId)}`}
                 >
                   결과 보기
                 </button>

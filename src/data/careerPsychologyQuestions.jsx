@@ -41,5 +41,4 @@
       { id: 40, question: "나는 진로를 선택할 때 경제적 여건도 고려한다.", category: "환경 요인" }
     ];
 
-
  export default careerPsychologyQuestions

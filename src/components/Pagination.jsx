@@ -1,9 +1,9 @@
 
-
-const Pagination = ({currentPage, totalPages, onPageChange }) => {
+const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const goToPage = (page) => {
     if (page < 1 || page > totalPages) return;
     onPageChange(page);
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -18,7 +18,6 @@ const Pagination = ({currentPage, totalPages, onPageChange }) => {
             &laquo;
           </button>
         </li>
-
         {[...Array(totalPages)].map((_, idx) => (
           <li
             key={idx + 1}
@@ -32,7 +31,6 @@ const Pagination = ({currentPage, totalPages, onPageChange }) => {
             </button>
           </li>
         ))}
-
         <li className="page-item">
           <button
             className="page-link bg-light border-light text-dark"

@@ -42,5 +42,4 @@ const jobValueTestQuestions = [
     { id: 40, question: "직업을 선택할 때 나의 관심과 열정이 가장 중요하다.", category: "흥미" }
   ];
 
-
  export default jobValueTestQuestions

@@ -42,5 +42,4 @@ const jobInterestTestQuestions = [
     { id: 40, question: "나는 실제로 손에 닿는 결과물을 만드는 게 성취감을 준다.", category: "실제형" }
   ];
 
-
   export default jobInterestTestQuestions
