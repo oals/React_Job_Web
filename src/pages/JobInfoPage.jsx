@@ -23,7 +23,7 @@ const JobInfoPage = () => {
       try {
         const response = await searchJobInfo(jobCd);
         const data = await response.json();
-
+        console.log(data['jobInfo'])
         setJobInfo(data['jobInfo'])
 
       } catch (error) {
@@ -38,46 +38,66 @@ const JobInfoPage = () => {
 
 
   useEffect(() => {
-    if (jobInfo?.certNm) {
-      const parts = jobInfo.certNm.split(/[\/,]/).map(s => s.trim());
-      const unique = [...new Set(parts)];
-      setUniqueCertParts(unique);
 
-      const parts2 = jobInfo.majorNm.split(/[\/,]/).map(s => s.trim());
-      const unique2 = [...new Set(parts2)];
-      setUniqueMajorParts(unique2);
+    if (jobInfo != null) {
 
-      const parts3 = jobInfo.jobProspect.split(/[ ]/).map(s => s.trim());
-      const unique3 = [...new Set(parts3)];
-      setUniqueJobActvImprtncsParts(unique3);
+      if (jobInfo?.certNm) {
+        const parts = jobInfo.certNm.split(/[\/,]/).map(s => s.trim());
+        const unique = [...new Set(parts)];
+        setUniqueCertParts(unique);
+      }
 
-      const unique4 = [...jobInfo.sal.matchAll(/(\d+)(?=만원)/g)].map(match => Number(match[1]));
-      setUniqueJobSalParts(unique4)
+      if (jobInfo.majorNm != null) {
+        const parts2 = jobInfo.majorNm.split(/[\/,]/).map(s => s.trim());
+        const unique2 = [...new Set(parts2)];
+        setUniqueMajorParts(unique2);
+      }
 
-      const parts5 = jobInfo.jobAbil.split(/[/]/).map(s => s.trim());
-      const unique5 = [...new Set(parts5)];
-      setUniqueJobAbilParts(unique5)
+      if (jobInfo.jobProspect) {
+        const parts3 = jobInfo.jobProspect.split(/[ ]/).map(s => s.trim());
+        const unique3 = [...new Set(parts3)];
+        setUniqueJobActvImprtncsParts(unique3);
+      }
+      if (jobInfo.jobProspect) {
+        const unique4 = [...jobInfo.sal.matchAll(/(\d+)(?=만원)/g)].map(match => Number(match[1]));
+        setUniqueJobSalParts(unique4)
+      }
 
-      const parts6 = jobInfo.knowldg.split(/[/]/).map(s => s.trim());
-      const unique6 = [...new Set(parts6)];
-      setUniqueJobKnowldgParts(unique6)
+      if (jobInfo.jobAbil) {
+        const parts5 = jobInfo.jobAbil.split(/[/]/).map(s => s.trim());
+        const unique5 = [...new Set(parts5)];
+        setUniqueJobAbilParts(unique5)
+      }
 
-      const parts7 = jobInfo.jobEnv.split(/[/]/).map(s => s.trim());
-      const unique7 = [...new Set(parts7)];
-      setUniqueJobEnvParts(unique7)
+      if (jobInfo.knowldg) {
+        const parts6 = jobInfo.knowldg.split(/[/]/).map(s => s.trim());
+        const unique6 = [...new Set(parts6)];
+        setUniqueJobKnowldgParts(unique6)
+      }
+      if (jobInfo.jobEnv) {
+        const parts7 = jobInfo.jobEnv.split(/[/]/).map(s => s.trim());
+        const unique7 = [...new Set(parts7)];
+        setUniqueJobEnvParts(unique7)
+      }
 
-      const parts8 = jobInfo.jobChr.split(/[/]/).map(s => s.trim());
-      const unique8 = [...new Set(parts8)];
-      setUniqueJobChrParts(unique8)
+      if (jobInfo.jobChr) {
+        const parts8 = jobInfo.jobChr.split(/[/]/).map(s => s.trim());
+        const unique8 = [...new Set(parts8)];
+        setUniqueJobChrParts(unique8)
+      }
 
-      const parts9 = jobInfo.jobIntrst.split(/[/]/).map(s => s.trim());
-      const unique9 = [...new Set(parts9)];
-      setUniqueJobIntrstParts(unique9)
+      if (jobInfo.jobIntrst) {
+        const parts9 = jobInfo.jobIntrst.split(/[/]/).map(s => s.trim());
+        const unique9 = [...new Set(parts9)];
+        setUniqueJobIntrstParts(unique9)
 
-      const parts10 = jobInfo.jobVals.split(/[/]/).map(s => s.trim());
-      const unique10 = [...new Set(parts10)];
-      setUniqueJobValsParts(unique10)
+      }
 
+      if (jobInfo.jobVals) {
+        const parts10 = jobInfo.jobVals.split(/[/]/).map(s => s.trim());
+        const unique10 = [...new Set(parts10)];
+        setUniqueJobValsParts(unique10)
+      }
     }
   }, [jobInfo]);
 
@@ -100,8 +120,10 @@ const JobInfoPage = () => {
             style={{ bottom: '1px' }}
           >
             <div className="d-flex flex-column pb-4 px-4 text-center mt-5 w-100">
-              <p className="text-primary fw-semibold">{jobInfo.jobLrclNm}</p>
-              <h1 className="display-5 fw-bold text-dark">{jobInfo.jobMdclNm}</h1>
+              <div className="mb-3">
+                  <small className=" text-start p-2 rounded text-primary fw-bold" style={{backgroundColor: '#d7ddfa',fontSize: '0.95rem' }}>{jobInfo.jobLrclNm}</small>
+              </div>
+              <h1 className="display-5 fw-bold text-dark">{jobInfo.jobSmclNm}</h1>
               <p className="text-muted mt-3 fw-bold">
                 {jobInfo.jobSum}
               </p>
@@ -123,21 +145,36 @@ const JobInfoPage = () => {
                 <h3 className="h5 fw-bold text-dark mb-3">
                   <i className="bi bi-mortarboard-fill  text-success me-2"></i>관련 학과
                 </h3>
-                <ul className="list-unstyled text-muted fw-bold ">
-                  {uniqueMajorParts.map((part, index) => (
-                    <li key={index} className="my-1 py-1"><i className="bi bi-check2-circle me-2 text-success"></i>{part}</li>
-                  ))}
-                </ul>
+               <ul className="list-unstyled text-muted fw-bold">
+                 {uniqueMajorParts.length > 0 ? (
+                   uniqueMajorParts.map((part, index) => (
+                     <li key={index} className="my-1 py-1">
+                       <i className="bi bi-check2-circle me-2 text-success"></i>
+                       {part}
+                     </li>
+                   ))
+                 ) : (
+                   <li className="my-1 py-1 text-muted fst-italic">관련 학과가 조회 되지 않습니다...</li>
+                 )}
+               </ul>
               </div>
               <div className="col-md-6">
                 <h3 className="h5 fw-bold text-dark mb-3">
                   <i className="bi bi-file-earmark-check-fill text-success me-2"></i>관련 자격증
                 </h3>
-                <ul className="list-unstyled text-muted fw-bold">
-                  {uniqueCertParts.map((part, index) => (
-                    <li key={index} className="my-1 py-1"><i className="bi bi-check2-circle me-2 text-success"></i>{part}</li>
-                  ))}
-                </ul>
+               <ul className="list-unstyled text-muted fw-bold">
+                 {uniqueCertParts.length > 0 ? (
+                   uniqueCertParts.map((part, index) => (
+                     <li key={index} className="my-1 py-1">
+                       <i className="bi bi-check2-circle me-2 text-success"></i>
+                       {part}
+                     </li>
+                   ))
+                 ) : (
+                   <li className="my-1 py-1 text-muted fst-italic">관련 자격증이 조회 되지 않습니다...</li>
+                 )}
+               </ul>
+
               </div>
             </div>
             <div className="text-center w-75 mb-5 ">

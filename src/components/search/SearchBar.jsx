@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const SearchBar = ({ isJobSearch }) => {
+const SearchBar = ({ prefix }) => {
 
   const [keyword, setKeyword] = useState('');
   const navigate = useNavigate();
@@ -42,14 +42,7 @@ const SearchBar = ({ isJobSearch }) => {
           onChange={(e) => setKeyword(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
-              //                   if (keyword.trim()) {
-              if (isJobSearch) {
-                navigate(`/search?text=${encodeURIComponent(keyword)}`);
-              } else {
-                navigate(`/news?text=${encodeURIComponent(keyword)}`);
-              }
-
-              //                   }
+              navigate(`/${prefix}?text=${encodeURIComponent(keyword)}`)
             }
           }}
         />

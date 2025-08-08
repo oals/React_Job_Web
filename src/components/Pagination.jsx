@@ -1,9 +1,41 @@
 
+
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const goToPage = (page) => {
     if (page < 1 || page > totalPages) return;
     onPageChange(page);
     window.scrollTo(0, 0);
+  };
+
+  const getPageNumbers = () => {
+    const delta = 5;
+    const range = [];
+    const rangeWithDots = [];
+    let l;
+
+    for (let i = 1; i <= totalPages; i++) {
+      if (
+        i === 1 ||
+        i === totalPages ||
+        (i >= currentPage - delta && i <= currentPage + delta)
+      ) {
+        range.push(i);
+      }
+    }
+
+    for (let i of range) {
+      if (l) {
+        if (i - l === 2) {
+          rangeWithDots.push(l + 1);
+        } else if (i - l !== 1) {
+          rangeWithDots.push('...');
+        }
+      }
+      rangeWithDots.push(i);
+      l = i;
+    }
+
+    return rangeWithDots;
   };
 
   return (
@@ -18,19 +50,23 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             &laquo;
           </button>
         </li>
-        {[...Array(totalPages)].map((_, idx) => (
-          <li
-            key={idx + 1}
-            className={`page-item ${currentPage === idx + 1 ? 'active text-light' : 'text-dark'}`}
-          >
-            <button
-              className="page-link border-light"
-              onClick={() => goToPage(idx + 1)}
+
+        {getPageNumbers().map((page, idx) =>
+          page === '...' ? (
+            <li key={idx} className="page-item disabled">
+              <span className="page-link">...</span>
+            </li>
+          ) : (
+            <li
+              key={idx}
+              className={`page-item ${currentPage === page ? 'active text-light' : 'text-dark'}`}
             >
-              {idx + 1}
-            </button>
-          </li>
-        ))}
+              <button className="page-link border-light" onClick={() => goToPage(page)}>
+                {page}
+              </button>
+            </li>
+          )
+        )}
         <li className="page-item">
           <button
             className="page-link bg-light border-light text-dark"

@@ -31,6 +31,11 @@ const NavigationBar = ({ isLogin, setIsLogin }) => {
             <Link to="/news?text=" className="me-4 link-offset-2 link-underline text-secondary link-underline-opacity-0">
               직업 뉴스
             </Link>
+            {isLogin && (
+              <Link to="/bookmark?text=" className="me-4 link-offset-2 link-underline text-secondary link-underline-opacity-0">
+                북마크
+              </Link>
+            )}
           </div>
         </div>
         <div>

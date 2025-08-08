@@ -10,6 +10,7 @@ import RegisterPage from './pages/RegisterPage';
 import JobInfoPage from './pages/JobInfoPage';
 import SearchPage from './pages/SearchPage';
 import NewsPage from './pages/NewsPage';
+import Bookmark from './pages/BookmarkPage';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/common/ScrollToTop';
@@ -35,6 +36,7 @@ function App() {
               <Route path="/jobrecommendationresult" element={<JobRecommendationResultPage />} />
               <Route path="/search" element={<SearchPage />} />
               <Route path="/news" element={<NewsPage />} />
+              <Route path="/bookmark" element={<Bookmark />} />
             </Routes>
           </div>
         </Router>

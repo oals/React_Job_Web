@@ -36,6 +36,7 @@ const SearchPage = () => {
         console.error('검색 중 오류:', error);
       }
     };
+
     if (findText != null && currentPage != null) {
       searchData();
     }
@@ -53,14 +54,14 @@ const SearchPage = () => {
         </div>
         <div className="d-flex flex-column mb-4">
           <span className="fw-semibold mb-1" style={{ color: '#EAEAEA', fontSize: '0.9rem' }}>
-            총 <span className="fw-bold" style={{ color: '#ffffff', fontSize: '1.0rem' }}>{totalCount}</span> 건의 직업정보가 있습니다.
+            총 <span className="fw-bold" style={{ color: '#ffffff', fontSize: '1.0rem' }}>{totalCount}</span> 건의 직업 정보가 있습니다.
           </span>
         </div>
         <SearchBar
-          isJobSearch={true}
+          prefix={"search"}
         />
       </section>
-      <div className="row mt-5 w-50">
+      <div className="row mt-5 w-75">
         <section className="col-md-12">
           <div className="d-flex justify-content-between align-items-center mb-3">
             <div className="text-muted small">
@@ -108,15 +109,17 @@ const SearchPage = () => {
           </div>
         </section>
       </div>
-      {totalCount !== 0 && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={Math.ceil(totalCount / size)}
-          onPageChange={(page) => {
-            setCurrentPage(page)
-          }}
-        />
-      )}
+      <div className="d-flex justify-content-center mt-4 w-25">
+          {totalCount !== 0 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={Math.ceil(totalCount / size)}
+              onPageChange={(page) => {
+                setCurrentPage(page)
+              }}
+            />
+          )}
+      </div>
     </div>
   )
 }

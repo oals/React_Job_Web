@@ -16,7 +16,7 @@ const PopularJobCard = ({ item }) => {
         >
           <div>
             <span className="badge bg-primary mb-2">{item.jobLrclNm}</span>
-            <h5 className="card-title">{item.jobMdclNm}</h5>
+            <h5 className="card-title">{item.jobSmclNm}</h5>
             <p
               className="card-text text-muted"
               style={{

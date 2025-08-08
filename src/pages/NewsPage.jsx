@@ -59,7 +59,7 @@ const NewsPage = () => {
             </span>
           </div>
           <SearchBar
-            isJobSearch={false}
+            prefix={"news"}
           />
         </section>
       </div>

@@ -58,7 +58,7 @@ const HomePage = () => {
         <h1 className="fw-bold">나에게 꼭 맞는 커리어를 찾아보세요.</h1>
         <span className="mb-4" style={{ fontSize: '1.2rem' }}>키워드, 분야, 또는 나만의 성향으로 직업을 검색할 수 있어요.</span>
         <SearchBar
-          isJobSearch={true}
+          prefix={"search"}
         />
         <div className="d-flex justify-content-start align-items-start flex-column w-100 mt-5">
           <span className="fw-bold text-dark mb-0" style={{ fontSize: '1.8rem' }}>사람들의 관심 직업</span>
