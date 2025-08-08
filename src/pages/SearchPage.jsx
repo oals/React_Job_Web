@@ -27,7 +27,7 @@ const SearchPage = () => {
       try {
 
         const memberId = localStorage.getItem('memberId');
-        const response = await searchJobList(findText, currentPage, size, memberId, searchType);
+        const response = await searchJobList(findText, currentPage, size, memberId != null ? memberId : '', searchType);
         const data = await response.json();
         setJobList(data['jobList']);
         setTotalCount(data['totalCount'])
