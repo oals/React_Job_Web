@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { logout } from '../utils/api';
 
 const NavigationBar = ({ isLogin, setIsLogin }) => {
 
@@ -43,6 +44,7 @@ const NavigationBar = ({ isLogin, setIsLogin }) => {
             <>
               <span className="me-4 text-secondary">환영합니다!</span>
               <button onClick={() => {
+                logout()
                 localStorage.setItem('isLogin', "false");
                 localStorage.setItem('memberEmail', "");
                 localStorage.setItem('memberId', "");

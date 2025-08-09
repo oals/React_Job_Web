@@ -17,17 +17,22 @@ export function login(loginData) {
   });
 }
 
+export function logout() {
+  return apiClient(`${API_URL}/auth/logout`, {
+    method: 'POST',
+    credentials: "include",
+  });
+}
+
 export function searchJobList(findText,page,size,memberId,searchType) {
   return apiClient(`${API_URL}/job/search/list?findText=${findText}&page=${page}&size=${size}&memberId=${memberId}&searchType=${searchType}`, {
     method: 'GET',
-    credentials: "include",
   });
 }
 
 export function searchJobInfo(jobCd) {
   return apiClient(`${API_URL}/job/search/info?jobCd=${jobCd}`, {
     method: 'GET',
-    credentials: "include",
   });
 }
 
@@ -49,14 +54,12 @@ export function insertJobQuestion(result, memberEmail,testType) {
 export function searchNews(findText,page,size) {
   return apiClient(`${API_URL}/news/search?findText=${findText}&page=${page}&size=${size}`, {
     method: 'GET',
-    credentials: "include",
   });
 }
 
 export function searchPopularJob() {
   return apiClient(`${API_URL}/job/search/popular`, {
     method: 'GET',
-    credentials: "include",
   });
 }
 
