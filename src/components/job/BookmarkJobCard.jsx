@@ -11,7 +11,7 @@ const SearchJobCard = ({ jobItem }) => {
 
   useEffect(() => {
     setIsBookmarked(jobItem.bookmark);
-  }, [jobItem.bookmark]);
+  }, [jobItem]);
 
   return (
     <div className="card shadow-sm p-2 pt-2 mt-2 mx-2  text-start "style={{width:'23.9%'}} >
@@ -26,6 +26,7 @@ const SearchJobCard = ({ jobItem }) => {
           <i
             className={`bi ${isBookmarked ? 'bi-bookmark-fill' : 'bi-bookmark'} fs-4 text-primary`}
             onClick={() => {
+              const memberId = localStorage.getItem('memberId');
               setIsBookmarked(prev => !prev);
               saveBookmarks(memberId, jobItem.jobCd, isBookmarked);
             }}

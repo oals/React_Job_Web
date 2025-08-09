@@ -104,7 +104,7 @@ const SearchPage = () => {
           <div className="w-100 mb-5">
             {jobList.length > 0 &&
               jobList.map((item, i) => (
-                <SearchJobCard key={i} jobItem={item} />
+                <SearchJobCard key={item.jobCd} jobItem={item} />
               ))}
           </div>
         </section>
