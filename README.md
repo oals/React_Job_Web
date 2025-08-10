@@ -45,6 +45,7 @@
 </details>
 
 
+---
 
 ## 📂 Jenkins
 
@@ -154,10 +155,10 @@
 <details>
 <summary>🔧 Config Provider</summary>
 
-    🔧 Config File Provider 사용
-        - Jenkins의 플러그인을 활용해 설정 파일을 Jenkins에 미리 등록해둡니다.
-        - 빌드 시 해당 파일들이 자동으로 워크스페이스에 복사되도록 설정하여, 일관된 개발/빌드 환경을 제공합니다.
-
+   <br>
+   
+   > **Jenkins의 플러그인을 활용해 설정 파일을 Jenkins에 미리 등록해둡니다.** <br>
+   > **빌드 시 해당 파일들이 자동으로 워크스페이스에 복사되도록 설정하여, 일관된 개발/빌드 환경을 제공합니다.**
    <img src="https://github.com/user-attachments/assets/eb677b1a-8f20-4e07-8489-c51dd96aafed" width="800"/>
    
 
@@ -288,13 +289,14 @@
 <details>
 <summary>🔧 Redis </summary>
 
+   <br>
+   
+   > **리프레쉬 토큰 저장** 
 
+   <br>
+   
    <img src="https://github.com/user-attachments/assets/7deb68fa-8368-4370-a890-c22df7ac9361" width="800"/>
 
-   <br>
-   <br>
-
-   > **리프레쉬 토큰 저장** 
 
 
 </details>
